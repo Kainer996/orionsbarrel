@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orion's Barrel — Spacefaring Pub</title>
+    <meta name="description" content="Orion's Barrel — a stylish spacefaring pub on Warp Route 7. Stellar cocktails, cosmic bites, and good company among the stars." />
+    <link rel="canonical" href="https://orionsbarrel.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="OB Logo.png" type="image/png" />
+
+    <meta property="og:title" content="Orion's Barrel — Spacefaring Pub" />
+    <meta property="og:description" content="A beautiful, modern pub among the stars. Dock in for stellar cocktails and cosmic bites." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://orionsbarrel.com" />
+    <meta property="og:image" content="OB%20Outside.png" />
+  </head>
+  <body>
+    <!-- Starfield background -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="backdrop-gradient" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#home" aria-label="Orion's Barrel home">
+          <img src="OB Logo.png" alt="Orion's Barrel Logo" class="brand-mark" />
+          <span class="brand-text">Orion's Barrel</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#menu">Menu</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#arcade">Arcade</a>
+          <a href="#visit">Visit</a>
+          <a class="button button--primary" href="#book">Book a Table</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__content">
+          <img class="hero__logo" src="OB Logo.png" alt="Orion's Barrel" />
+          <h1 id="hero-title" class="hero__title">Your favorite pub,
+            among the stars.</h1>
+          <p class="hero__tag">Warp Route 7, Orion Spur Express</p>
+          <div class="hero__cta">
+            <a href="#menu" class="button button--primary">View Menu</a>
+            <a href="#book" class="button button--ghost">Reserve</a>
+          </div>
+        </div>
+        <div class="hero__ship" role="img" aria-label="Exterior view of Orion's Barrel">
+          <img src="OB Outside.png" alt="Orion's Barrel exterior" />
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section" aria-labelledby="about-title">
+        <div class="container grid-2">
+          <div class="reveal">
+            <h2 id="about-title" class="section__title">A pub with a view of infinity</h2>
+            <p>
+              Nestled along Warp Route 7, Orion's Barrel is where merchants, pilots,
+              researchers, and daydreamers meet for a drink between the stars. Our
+              mixologists craft stellar cocktails with locally-sourced nebula botanicals,
+              while the kitchen serves hearty cosmic bites to keep your boosters running.
+            </p>
+            <p>
+              Whether you're celebrating a successful jump or planning your next expedition,
+              you'll find warm light, good music, and better company at the Barrel.
+            </p>
+            <div class="badges">
+              <span class="badge">Zero-Gravity Friendly</span>
+              <span class="badge">Live Synthwave Fridays</span>
+              <span class="badge">AI Sommelier</span>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3 class="card__title">Tonight's Features</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="feature-title">Dark Matter Old Fashioned</span>
+                <span class="feature-note">smoked comet bitters, asteroid sugar</span>
+              </li>
+              <li>
+                <span class="feature-title">Aurora Spritz</span>
+                <span class="feature-note">ionized citrus, stardust prosecco</span>
+              </li>
+              <li>
+                <span class="feature-title">Solar Flare Bao</span>
+                <span class="feature-note">spiced nebula jackfruit, glow slaw</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU PREVIEW -->
+      <section id="menu" class="section section--tinted" aria-labelledby="menu-title">
+        <div class="container">
+          <h2 id="menu-title" class="section__title center">Stellar sips and cosmic bites</h2>
+          <div class="cards">
+            <article class="card reveal">
+              <h3 class="card__title">Signature Cocktails</h3>
+              <p>Inventive mixes designed for deep-space evenings. Balanced, bright, and occasionally explosive (in flavor).</p>
+              <a class="link" href="#book">Order for your crew</a>
+            </article>
+            <article class="card reveal">
+              <h3 class="card__title">Small Plates</h3>
+              <p>Comfort food meets starport cravings: bao, sliders, nebula fries, and station-fresh greens.</p>
+              <a class="link" href="#book">Grab a table</a>
+            </article>
+            <article class="card reveal">
+              <h3 class="card__title">Zero-Proof</h3>
+              <p>Luminous, layered, and alcohol-free options for pilots on duty and explorers off-call.</p>
+              <a class="link" href="#book">See options</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery" class="section" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 id="gallery-title" class="section__title center">A glimpse outside</h2>
+        </div>
+        <div class="gallery reveal">
+          <img src="OB Outside.png" alt="The exterior of Orion's Barrel in orbit" />
+        </div>
+      </section>
+
+      <!-- ARCADE -->
+      <section id="arcade" class="section section--tinted" aria-labelledby="arcade-title">
+        <div class="container">
+          <h2 id="arcade-title" class="section__title center">Arcade — Barrel Invaders</h2>
+          <p class="center" style="margin:0 0 18px; color: var(--muted)">Defend the Barrel from mischievous space gremlins. Use ← → to move, Space to fire.</p>
+          <div class="arcade reveal">
+            <div class="arcade__hud">
+              <div><strong>Score:</strong> <span id="score">0</span></div>
+              <div><strong>Lives:</strong> <span id="lives">3</span></div>
+              <div id="status" aria-live="polite"></div>
+            </div>
+            <canvas id="arcade-canvas" width="480" height="640" aria-label="Barrel Invaders game area"></canvas>
+            <div class="arcade__controls">
+              <button id="startBtn" class="button button--primary" type="button">Start</button>
+              <button id="pauseBtn" class="button button--ghost" type="button">Pause</button>
+              <button id="resetBtn" class="button button--ghost" type="button">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / CONTACT -->
+      <section id="visit" class="section section--tinted" aria-labelledby="visit-title">
+        <div class="container grid-2">
+          <div class="reveal">
+            <h2 id="visit-title" class="section__title">Dock with us</h2>
+            <p>
+              Find us at <strong>Warp Route 7</strong>, Orion Spur Express. Approach vector and
+              docking guidance transmitted on standard beacons. Atmosphere rated for all Class-M
+              species. Gravity normalized to 1.0g.
+            </p>
+            <p>
+              Questions about private hangars, events, or large crews? Send us a hail and we'll
+              configure a bay for you.
+            </p>
+            <div class="contact">
+              <a class="link" href="mailto:hail@orionsbarrel.com">hail@orionsbarrel.com</a>
+              <a class="link" href="https://orionsbarrel.com" target="_blank" rel="noopener">orionsbarrel.com</a>
+            </div>
+          </div>
+          <form id="book" class="card reveal" aria-labelledby="book-title" action="https://formspree.io/f/xbldnkyz" method="POST">
+            <h3 id="book-title" class="card__title">Reserve a table</h3>
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required />
+            </label>
+            <label class="inline">
+              <span>Party size</span>
+              <input type="number" name="party" min="1" max="12" value="2" />
+              <span>Date</span>
+              <input type="date" name="date" />
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea name="notes" rows="3" placeholder="Preferred time, special requests…"></textarea>
+            </label>
+            <button class="button button--primary" type="submit">Request Booking</button>
+            <p class="form-note">We confirm all reservations by subspace within one orbit.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer__content">
+        <div class="footer__brand">
+          <img src="OB Logo.png" alt="Orion's Barrel logo small" />
+          <p>© <span id="year"></span> Orion's Barrel. All rights reserved across this sector.</p>
+        </div>
+        <div class="footer__links">
+          <a class="link" href="#about">About</a>
+          <a class="link" href="#menu">Menu</a>
+          <a class="link" href="#gallery">Gallery</a>
+          <a class="link" href="#visit">Visit</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+  </html>
+
+
