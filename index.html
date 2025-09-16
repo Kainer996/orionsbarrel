@@ -38,7 +38,21 @@
           <a href="#visit">Visit</a>
           <a class="button button--primary" href="#book">Book a Table</a>
         </nav>
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#locals">Locals</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#arcade">Arcade</a>
+        <a href="#visit">Visit</a>
+        <a class="button button--primary" href="#book">Book a Table</a>
+      </nav>
     </header>
 
     <main id="home">
@@ -188,7 +202,10 @@
       <section id="arcade" class="section section--tinted" aria-labelledby="arcade-title">
         <div class="container">
           <h2 id="arcade-title" class="section__title center">Arcade — Barrel Invaders</h2>
-          <p class="center" style="margin:0 0 18px; color: var(--muted)">Defend the Barrel from mischievous space gremlins. Use ← → to move, Space to fire.</p>
+          <p class="center" style="margin:0 0 18px; color: var(--muted)">
+            <span class="desktop-controls">Defend the Barrel from mischievous space gremlins. Use ← → to move, Space to fire.</span>
+            <span class="mobile-controls">Defend the Barrel from mischievous space gremlins. Touch and drag to move, tap to fire.</span>
+          </p>
           <div class="arcade reveal">
             <div class="arcade__hud">
               <div><strong>Score:</strong> <span id="score">0</span></div>

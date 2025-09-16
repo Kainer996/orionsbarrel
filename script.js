@@ -4,6 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileNav = document.querySelector('.mobile-nav');
+
+if (mobileMenuToggle && mobileNav) {
+  mobileMenuToggle.addEventListener('click', () => {
+    mobileMenuToggle.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+    
+    // Update aria-expanded
+    const isExpanded = mobileNav.classList.contains('active');
+    mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
+  });
+
+  // Close mobile menu when clicking on links
+  mobileNav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      mobileMenuToggle.classList.remove('active');
+      mobileNav.classList.remove('active');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // Intersection Observer reveal
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -106,6 +130,8 @@ if (heroShip){
   };
 
   const keys = {left:false, right:false, space:false};
+  
+  // Keyboard controls
   window.addEventListener('keydown', (e)=>{
     if(['ArrowLeft','a','A'].includes(e.key)) keys.left = true;
     if(['ArrowRight','d','D'].includes(e.key)) keys.right = true;
@@ -115,6 +141,63 @@ if (heroShip){
     if(['ArrowLeft','a','A'].includes(e.key)) keys.left = false;
     if(['ArrowRight','d','D'].includes(e.key)) keys.right = false;
     if(e.code === 'Space') keys.space = false;
+  });
+
+  // Touch controls for mobile
+  let touchStartX = null;
+  let touchCurrentX = null;
+  let isTouching = false;
+
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchCurrentX = touch.clientX;
+    isTouching = true;
+    
+    // Shoot on touch start
+    keys.space = true;
+    setTimeout(() => keys.space = false, 100);
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (!isTouching) return;
+    
+    const touch = e.touches[0];
+    touchCurrentX = touch.clientX;
+    
+    // Calculate movement direction
+    const deltaX = touchCurrentX - touchStartX;
+    const sensitivity = 20;
+    
+    if (deltaX > sensitivity) {
+      keys.right = true;
+      keys.left = false;
+    } else if (deltaX < -sensitivity) {
+      keys.left = true;
+      keys.right = false;
+    } else {
+      keys.left = false;
+      keys.right = false;
+    }
+  });
+
+  canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    isTouching = false;
+    touchStartX = null;
+    touchCurrentX = null;
+    keys.left = false;
+    keys.right = false;
+  });
+
+  // Prevent scrolling on touch
+  canvas.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    isTouching = false;
+    keys.left = false;
+    keys.right = false;
   });
 
   // Entities
