@@ -90,6 +90,18 @@ section[id]{scroll-margin-top: 90px}
 .link{color:#d6ecff; text-decoration:none; font-weight:700}
 .link:hover{text-decoration:underline}
 
+/* Locals */
+.locals-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-top:24px}
+.local-card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:0; overflow:hidden; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease}
+.local-card:hover{transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,0,0,.6), 0 0 50px rgba(71,176,255,.2)}
+.local-card__image{height:240px; overflow:hidden; background: linear-gradient(45deg, var(--bg-2), var(--card))}
+.local-card__image img{width:100%; height:100%; object-fit:cover; transition: transform .3s ease}
+.local-card:hover .local-card__image img{transform: scale(1.05)}
+.local-card__content{padding:20px}
+.local-card__name{margin:0 0 4px; font-family:'Space Grotesk', system-ui; font-size:24px; color:var(--brand)}
+.local-card__title{margin:0 0 12px; color:var(--accent); font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:.5px}
+.local-card__bio{margin:0; line-height:1.6; color:var(--muted)}
+
 /* Gallery */
 .gallery{width:min(1200px, 94%); margin:10px auto 0; border-radius:20px; overflow:hidden; box-shadow: var(--shadow)}
 .gallery img{width:100%; display:block}
@@ -124,6 +136,7 @@ input:focus, textarea:focus{outline:2px solid rgba(71,176,255,.6); outline-offse
   .grid-2{grid-template-columns:1fr}
   label.inline{grid-template-columns:1fr 1fr}
   .cards{grid-template-columns:1fr}
+  .locals-grid{grid-template-columns:1fr}
 }
 
 
