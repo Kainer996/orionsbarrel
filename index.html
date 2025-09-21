@@ -36,7 +36,7 @@
           <a href="#gallery">Gallery</a>
           <a href="#arcade">Arcade</a>
           <a href="#visit">Visit</a>
-          <a class="button button--primary" href="#book">Book a Table</a>
+          <a class="button button--primary" href="#mailinglist">Join Mailing List</a>
         </nav>
         <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
           <span></span>
@@ -65,7 +65,7 @@
           <p class="hero__tag">Warp Route 7, Orion Spur Express</p>
           <div class="hero__cta">
             <a href="#menu" class="button button--primary">View Menu</a>
-            <a href="#book" class="button button--ghost">Reserve</a>
+            <a href="#mailinglist" class="button button--ghost">Join List</a>
           </div>
         </div>
         <div class="hero__ship" role="img" aria-label="Exterior view of Orion's Barrel">
@@ -122,17 +122,17 @@
             <article class="card reveal">
               <h3 class="card__title">Signature Cocktails</h3>
               <p>Inventive mixes designed for deep-space evenings. Balanced, bright, and occasionally explosive (in flavor).</p>
-              <a class="link" href="#book">Order for your crew</a>
+              <a class="link" href="#mailinglist">Join our crew</a>
             </article>
             <article class="card reveal">
               <h3 class="card__title">Small Plates</h3>
               <p>Comfort food meets starport cravings: bao, sliders, nebula fries, and station-fresh greens.</p>
-              <a class="link" href="#book">Grab a table</a>
+              <a class="link" href="#mailinglist">Get updates</a>
             </article>
             <article class="card reveal">
               <h3 class="card__title">Zero-Proof</h3>
               <p>Luminous, layered, and alcohol-free options for pilots on duty and explorers off-call.</p>
-              <a class="link" href="#book">See options</a>
+              <a class="link" href="#mailinglist">Stay informed</a>
             </article>
           </div>
         </div>
@@ -241,8 +241,11 @@
               <a class="link" href="https://orionsbarrel.com" target="_blank" rel="noopener">orionsbarrel.com</a>
             </div>
           </div>
-          <form id="book" class="card reveal" aria-labelledby="book-title" action="https://formspree.io/f/xbldnkyz" method="POST">
-            <h3 id="book-title" class="card__title">Reserve a table</h3>
+          <form id="mailinglist" class="card reveal" aria-labelledby="mailinglist-title" action="save_email.php" method="POST">
+            <h3 id="mailinglist-title" class="card__title">Join our stellar mailing list</h3>
+            <p style="margin: 0 0 24px; color: var(--muted); font-size: 14px;">
+              Stay in the loop with cosmic events, new menu items, and special promotions at the Barrel.
+            </p>
             <label>
               <span>Name</span>
               <input type="text" name="name" required />
@@ -251,18 +254,9 @@
               <span>Email</span>
               <input type="email" name="email" required />
             </label>
-            <label class="inline">
-              <span>Party size</span>
-              <input type="number" name="party" min="1" max="12" value="2" />
-              <span>Date</span>
-              <input type="date" name="date" />
-            </label>
-            <label>
-              <span>Notes</span>
-              <textarea name="notes" rows="3" placeholder="Preferred time, special requests…"></textarea>
-            </label>
-            <button class="button button--primary" type="submit">Request Booking</button>
-            <p class="form-note">We confirm all reservations by subspace within one orbit.</p>
+            <button class="button button--primary" type="submit">Join the Crew</button>
+            <p class="form-note">We'll send you stellar updates via subspace transmission.</p>
+            <div id="form-message" style="margin-top: 16px; padding: 12px; border-radius: 8px; display: none;"></div>
           </form>
         </div>
       </section>

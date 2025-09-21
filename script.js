@@ -368,4 +368,69 @@ if (heroShip){
   draw();
 })();
 
+// =====================
+// Mailing List Form Handler
+// =====================
+(function mailingListHandler(){
+  const form = document.getElementById('mailinglist');
+  const messageDiv = document.getElementById('form-message');
+  
+  if (!form || !messageDiv) return;
+  
+  function showMessage(message, isSuccess) {
+    messageDiv.textContent = message;
+    messageDiv.style.display = 'block';
+    messageDiv.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+    messageDiv.style.color = isSuccess ? '#155724' : '#721c24';
+    messageDiv.style.border = isSuccess ? '1px solid #c3e6cb' : '1px solid #f5c6cb';
+    
+    // Scroll message into view
+    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Hide message after 5 seconds if successful
+    if (isSuccess) {
+      setTimeout(() => {
+        messageDiv.style.display = 'none';
+      }, 5000);
+    }
+  }
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    
+    // Show loading state
+    submitButton.textContent = 'Joining...';
+    submitButton.disabled = true;
+    
+    try {
+      const formData = new FormData(form);
+      
+      const response = await fetch('save_email.php', {
+        method: 'POST',
+        body: formData
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        showMessage(result.message, true);
+        form.reset(); // Clear the form
+      } else {
+        showMessage(result.message, false);
+      }
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      showMessage('Sorry, there was an error submitting your information. Please try again later.', false);
+    } finally {
+      // Restore button state
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+    }
+  });
+})();
+
 
