@@ -475,6 +475,27 @@ if (heroShip){
     ]
   };
 
+  // Handle like button clicks
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('social-action') && e.target.textContent.includes('💫')) {
+      const currentText = e.target.textContent;
+      const currentCount = parseInt(currentText.match(/\d+/)[0]);
+      const newCount = currentCount + 1;
+      e.target.textContent = `💫 ${newCount}`;
+      
+      // Add visual feedback
+      e.target.style.transform = 'scale(1.2)';
+      e.target.style.color = 'var(--brand)';
+      setTimeout(() => {
+        e.target.style.transform = '';
+        e.target.style.color = '';
+      }, 200);
+      
+      console.log('Like button clicked! New count:', newCount); // Debug
+      return; // Prevent other click handlers
+    }
+  });
+
   // Toggle comments visibility
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('toggle-comments')) {
