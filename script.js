@@ -556,7 +556,7 @@ if (heroShip){
         const characterName = postOwner.charAt(0).toUpperCase() + postOwner.slice(1);
         const characterHandle = `@${getCharacterHandle(postOwner)}`;
         const characterImage = `orionsbarrel/${characterName === 'Dick' ? 'Dick' : characterName.toLowerCase()}.png`;
-        const replyText = getRandomReply(postOwner);
+        const replyText = getContextualReply(postOwner, input.value.trim());
         
         const characterReply = createComment(characterHandle, replyText, 'Just now', characterImage);
         characterReply.classList.add('new-comment');
@@ -609,9 +609,99 @@ if (heroShip){
     return handles[character] || 'Unknown';
   }
 
-  function getRandomReply(character) {
-    const replies = characterReplies[character] || ['Thanks for the comment!'];
-    return replies[Math.floor(Math.random() * replies.length)];
+  function getContextualReply(character, userComment) {
+    const comment = userComment.toLowerCase();
+    
+    // Create contextual reply categories for each character
+    const contextualReplies = {
+      mary: {
+        drink: ["Thanks! I take pride in our drink selection. What's your usual order?", "Glad you appreciate our beverages! Come try our new cocktails!", "You have great taste! I'll make sure we keep that one stocked."],
+        food: ["Our kitchen works hard to create amazing dishes! What's your favorite?", "So happy you enjoy our food! The chef will be thrilled to hear that.", "Thanks! We source the best ingredients from across the galaxy."],
+        compliment: ["You're too kind! I'm just doing what I love.", "That means everything to me! Thank you so much!", "Comments like yours remind me why I love this job."],
+        default: ["Thank you so much! I always appreciate feedback from our wonderful community! 😊", "That means the world to me! I love creating a welcoming space for everyone. ✨"]
+      },
+      carl: {
+        dog: ["Dogs are the best! Do you have any? I'd love to see pictures!", "YES! Someone else who gets it! Dogs are pure joy!", "I dream about the day I get to Earth and meet my first dog. Got any advice?"],
+        earth: ["Earth sounds amazing! Is it really as beautiful as the photos?", "You've been to Earth?! Tell me everything! Especially about the dogs!", "That's my dream destination! What's the best part about it?"],
+        mining: ["Thanks! Mining's tough work but finding beautiful crystals makes it worth it.", "The asteroid belts are full of surprises! Have you ever been out there?", "It's honest work! Plus I'm saving every credit for my Earth trip."],
+        compliment: ["Aw, thanks! You seem really nice too! Want to be friends?", "You're awesome! When I get my dogs, you'll be the first to see pictures!", "That made my day! You're the kind of person that makes space feel less big."],
+        default: ["Thanks! You seem really nice! Maybe you'd want to help me look at dog pictures sometime? 🐕", "That's so encouraging! I'm saving up credits to get to Earth - every positive comment helps! 😊"]
+      },
+      dick: {
+        truth: ["EXACTLY! Finally someone who sees what's really happening!", "You GET IT! The truth is out there if people would just OPEN THEIR EYES!", "YES! Don't let them convince you otherwise! Stay vigilant!"],
+        conspiracy: ["I KNEW IT! You can see through their lies too!", "WAKE UP EVERYONE! This person knows what's really going on!", "Thank you for speaking the truth! They can't silence us all!"],
+        disagree: ["You're still asleep! One day you'll see the truth and thank me!", "That's exactly what they WANT you to think! Do your research!", "Open your mind! The evidence is everywhere if you just LOOK!"],
+        default: ["FINALLY! Someone who gets it! Wake up, people! The truth is out there! 👁️", "You're one of the few who can see through their lies! Stay vigilant, friend! 🔍"]
+      },
+      walter: {
+        wisdom: ["Thank you, young one. Wisdom shared creates more wisdom.", "Your words warm this old heart. The universe teaches us all.", "I appreciate your thoughtfulness. Experience is meant to be shared."],
+        space: ["The stars have been my companions for decades. They teach patience.", "In the vastness of space, we find both our smallness and significance.", "Out here, you learn what truly matters and what's just noise."],
+        compliment: ["Your kindness honors me. Thank you for sharing your thoughts.", "Such thoughtful words. The universe needs more like you.", "Thank you. It's encounters like these that make the journey worthwhile."],
+        default: ["Thank you, young one. In my years among the stars, I've learned that wisdom shared is wisdom doubled.", "Your words warm an old spacer's heart. The universe has a way of connecting kindred spirits."]
+      },
+      scally: {
+        deal: ["Now you're talking my language! I might have just what you need... 😉", "Smart thinking! I always have something cooking for the right customer.", "A person of refined taste! Check your DMs for exclusive opportunities."],
+        business: ["You understand how the galaxy really works! I like that.", "Exactly! Supply and demand, my friend. I'm facilitating commerce.", "You've got a good head for business! Ever consider a partnership?"],
+        compliment: ["Flattery will get you everywhere! And maybe a discount too.", "You've got good taste! I knew I liked you from the start.", "Thanks! Quality recognizes quality, as they say."],
+        default: ["Heh, you know quality when you see it! If you ever need anything... special... you know where to find me. 😉", "Smart person! I like you already. Keep your eyes open for my next... shipment. 📦"]
+      },
+      toni: {
+        romance: ["Ah, a fellow romantic! Life's too short for anything less than passion.", "You understand! Romance is what makes the universe beautiful.", "Exactly! Love and connection are what we're all searching for."],
+        style: ["You clearly have excellent taste! We should grab drinks sometime.", "Style recognizes style! I can tell you appreciate the finer things.", "Thank you! I believe presentation is everything, don't you agree?"],
+        compliment: ["You're too kind! Beauty recognizes beauty, as they say.", "Such charm! We really should meet for drinks soon.", "Flattery will get you everywhere! And I mean that in the best way."],
+        default: ["You have excellent taste! If you ever want dining recommendations, I know all the best spots! ✨", "Thanks, beautiful! Life's too short not to appreciate the good things, don't you think? 😉"]
+      }
+    };
+
+    // Check for specific keywords/phrases  
+    const characterContext = contextualReplies[character];
+    if (!characterContext) return 'Thanks for the comment!';
+
+    // Topic-specific keywords
+    if (comment.includes('dog') || comment.includes('puppy') || comment.includes('pet')) {
+      return getRandomFromArray(characterContext.dog || characterContext.default);
+    }
+    if (comment.includes('earth') || comment.includes('planet') || comment.includes('home')) {
+      return getRandomFromArray(characterContext.earth || characterContext.default);
+    }
+    if (comment.includes('drink') || comment.includes('cocktail') || comment.includes('beer') || comment.includes('alcohol')) {
+      return getRandomFromArray(characterContext.drink || characterContext.default);
+    }
+    if (comment.includes('food') || comment.includes('meal') || comment.includes('eat') || comment.includes('hungry')) {
+      return getRandomFromArray(characterContext.food || characterContext.default);
+    }
+    if (comment.includes('mining') || comment.includes('asteroid') || comment.includes('crystal') || comment.includes('work')) {
+      return getRandomFromArray(characterContext.mining || characterContext.default);
+    }
+    if (comment.includes('truth') || comment.includes('conspiracy') || comment.includes('wake up') || comment.includes('evidence')) {
+      return getRandomFromArray(characterContext.truth || characterContext.conspiracy || characterContext.default);
+    }
+    if (comment.includes('wisdom') || comment.includes('wise') || comment.includes('experience') || comment.includes('learn')) {
+      return getRandomFromArray(characterContext.wisdom || characterContext.default);
+    }
+    if (comment.includes('star') || comment.includes('space') || comment.includes('universe') || comment.includes('cosmos')) {
+      return getRandomFromArray(characterContext.space || characterContext.default);
+    }
+    if (comment.includes('deal') || comment.includes('buy') || comment.includes('sell') || comment.includes('business')) {
+      return getRandomFromArray(characterContext.deal || characterContext.business || characterContext.default);
+    }
+    if (comment.includes('love') || comment.includes('romance') || comment.includes('date') || comment.includes('beautiful')) {
+      return getRandomFromArray(characterContext.romance || characterContext.style || characterContext.default);
+    }
+
+    // Sentiment analysis
+    if (comment.includes('great') || comment.includes('awesome') || comment.includes('amazing') || comment.includes('fantastic') || comment.includes('best')) {
+      return getRandomFromArray(characterContext.compliment || characterContext.default);
+    }
+    if (comment.includes('wrong') || comment.includes('disagree') || comment.includes('no') || comment.includes('bad')) {
+      return getRandomFromArray(characterContext.disagree || characterContext.default);
+    }
+
+    return getRandomFromArray(characterContext.default);
+  }
+
+  function getRandomFromArray(array) {
+    return array[Math.floor(Math.random() * array.length)];
   }
 })();
 
