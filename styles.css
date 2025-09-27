@@ -140,41 +140,16 @@ section[id]{scroll-margin-top: 90px}
 .social-post__info{flex:1}
 .social-post__name{margin:0; font-family:'Space Grotesk', system-ui; font-size:16px; font-weight:600; color:var(--text)}
 .social-post__handle{margin:0; font-size:14px; color:var(--accent); font-weight:500}
+.profile-link{text-decoration:none; color:inherit; transition: opacity .2s ease}
+.profile-link:hover{opacity:.8}
+.profile-link:hover .social-post__name{color:var(--brand)}
+.profile-link:hover .social-post__avatar{transform: scale(1.05); box-shadow: 0 0 20px rgba(71,176,255,.4)}
 .social-post__time{font-size:12px; color:var(--muted); float:right}
 .social-post__content{margin-bottom:16px; line-height:1.5; color:var(--text)}
 .social-post__content p{margin:0}
 .social-post__actions{display:flex; gap:20px; padding-top:12px; border-top:1px solid rgba(255,255,255,.05)}
 .social-action{background:none; border:none; color:var(--muted); font-size:13px; cursor:pointer; padding:4px 8px; border-radius:6px; transition: all .2s ease; font-family:inherit}
 .social-action:hover{background:rgba(71,176,255,.1); color:var(--accent); transform: scale(1.05)}
-
-/* Profile Links */
-.profile-link{text-decoration:none; color:inherit; transition: all .2s ease}
-.profile-link:hover{transform: scale(1.05)}
-.profile-link:hover .social-post__name{color:var(--brand)}
-
-/* Profile Pages */
-.profile-section{display:none!important; background:var(--bg-2)}
-.profile-section:target{display:block!important}
-.profile-card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:30px; box-shadow: var(--shadow); max-width:600px; margin:0 auto}
-.profile-header{display:flex; align-items:center; gap:20px; margin-bottom:30px; position:relative}
-.profile-avatar{width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid var(--brand); box-shadow: 0 8px 25px rgba(0,0,0,.3)}
-.profile-info{flex:1}
-.profile-name{margin:0 0 5px; font-family:'Space Grotesk', system-ui; font-size:28px; color:var(--brand)}
-.profile-handle{margin:0 0 5px; color:var(--accent); font-weight:600; font-size:16px}
-.profile-title{margin:0; color:var(--muted); font-size:14px; text-transform:uppercase; letter-spacing:.5px}
-.profile-section .back-link{position:absolute; top:0; right:0; color:var(--accent); text-decoration:none; padding:8px 12px; border:1px solid rgba(255,255,255,.1); border-radius:8px; font-size:14px; transition: all .2s ease}
-.profile-section .back-link:hover{background:rgba(71,176,255,.1); border-color:var(--accent)}
-.profile-bio{margin-bottom:30px; line-height:1.6; color:var(--text)}
-.profile-stats{display:flex; gap:30px; justify-content:center; padding-top:20px; border-top:1px solid rgba(255,255,255,.05)}
-.stat{text-align:center}
-.stat-number{display:block; font-family:'Space Grotesk', system-ui; font-size:20px; font-weight:700; color:var(--brand)}
-.stat-label{display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-top:2px}
-@media (max-width: 768px) {
-  .profile-header{flex-direction:column; text-align:center}
-  .profile-avatar{width:100px; height:100px}
-  .back-link{position:static; margin-top:10px}
-  .profile-stats{gap:20px}
-}
 
 /* Comments System */
 .comments-section{display:none; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,.05)}
@@ -213,6 +188,38 @@ input, textarea{background:#0b122d; border:1px solid rgba(255,255,255,.12); colo
 input:focus, textarea:focus{outline:2px solid rgba(71,176,255,.6); outline-offset:1px}
 .form-note{color:var(--muted); margin-top:10px}
 .contact{display:flex; gap:14px; margin-top:10px}
+
+/* Profile Pages */
+.profile-page{min-height:100vh; padding-top:120px}
+.profile-header{padding:40px 0 60px; background: linear-gradient(135deg, rgba(71,176,255,.1), rgba(71,176,255,.05))}
+.profile-header__content{display:flex; gap:40px; align-items:center}
+.profile-header__image{flex-shrink:0}
+.profile-header__image img{width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid rgba(71,176,255,.3); box-shadow: var(--shadow)}
+.profile-header__info{flex:1}
+.profile-header__name{margin:0 0 8px; font-family:'Space Grotesk', system-ui; font-size:48px; color:var(--text)}
+.profile-header__title{margin:0 0 4px; color:var(--accent); font-weight:600; font-size:18px; text-transform:uppercase; letter-spacing:.5px}
+.profile-header__handle{margin:0 0 24px; color:var(--muted); font-size:16px}
+.profile-header__stats{display:flex; gap:32px}
+.stat{text-align:center}
+.stat__number{display:block; font-family:'Space Grotesk', system-ui; font-size:24px; font-weight:700; color:var(--brand)}
+.stat__label{display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-top:4px}
+.profile-bio{padding:60px 0}
+.profile-bio__content{max-width:800px; margin:0 auto}
+.profile-bio h2{font-family:'Space Grotesk', system-ui; font-size:32px; margin:0 0 24px; color:var(--text)}
+.profile-bio p{margin:0 0 20px; line-height:1.7; color:var(--text)}
+.profile-details{display:grid; gap:16px; margin-top:40px; padding:24px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px}
+.detail{display:flex; gap:12px}
+.detail strong{color:var(--accent); min-width:120px}
+.profile-posts{padding:60px 0}
+.profile-posts h2{font-family:'Space Grotesk', system-ui; font-size:32px; margin:0 0 32px; color:var(--text)}
+.posts-grid{display:grid; gap:24px; max-width:600px; margin:0 auto}
+.back-to-spacebook{padding:40px 0 80px; text-align:center}
+@media (max-width: 768px) {
+  .profile-header__content{flex-direction:column; text-align:center; gap:24px}
+  .profile-header__image img{width:120px; height:120px}
+  .profile-header__name{font-size:36px}
+  .profile-header__stats{justify-content:center}
+}
 
 /* Footer */
 .site-footer{border-top:1px solid rgba(255,255,255,.08); padding:28px 0; background:rgba(6,8,18,.6)}

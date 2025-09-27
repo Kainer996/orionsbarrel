@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary - Owner & Proprietor | Orion's Barrel</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Meet Mary, the heart and soul of Orion's Barrel. Learn about the owner who makes everyone feel welcome among the stars.">
+</head>
+<body>
+  <!-- Starfield background -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="backdrop-gradient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Orion's Barrel home">
+        <img src="OB Logo.png" alt="Orion's Barrel Logo" class="brand-mark" />
+        <span class="brand-text">Orion's Barrel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#menu">Menu</a>
+        <a href="index.html#locals">Locals</a>
+        <a href="index.html#spacebook">Spacebook</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#arcade">Arcade</a>
+        <a href="index.html#visit">Visit</a>
+        <a class="button button--primary" href="index.html#mailinglist">Join Mailing List</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <!-- Profile Header -->
+    <section class="profile-header">
+      <div class="container">
+        <div class="profile-header__content">
+          <div class="profile-header__image">
+            <img src="orionsbarrel/mary.png" alt="Mary" />
+          </div>
+          <div class="profile-header__info">
+            <h1 class="profile-header__name">Mary</h1>
+            <p class="profile-header__title">Owner & Proprietor</p>
+            <p class="profile-header__handle">@BarrelOwner</p>
+            <div class="profile-header__stats">
+              <div class="stat">
+                <span class="stat__number">245</span>
+                <span class="stat__label">Posts</span>
+              </div>
+              <div class="stat">
+                <span class="stat__number">1.2K</span>
+                <span class="stat__label">Followers</span>
+              </div>
+              <div class="stat">
+                <span class="stat__number">890</span>
+                <span class="stat__label">Following</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Bio -->
+    <section class="profile-bio">
+      <div class="container">
+        <div class="profile-bio__content">
+          <h2>About Mary</h2>
+          <p>The heart and soul of Orion's Barrel, Mary is a graceful alien woman whose warm presence makes everyone feel welcome in the vastness of space. With her keen business sense and genuine care for her patrons, she's turned this remote station into a true home away from home.</p>
+          <p>Mary has an uncanny ability to remember everyone's favorite drink and always knows exactly what someone needs—whether it's a strong cocktail, a listening ear, or just a place to belong among the stars. Her philosophy is simple: in the infinite darkness of space, we all need a little light, warmth, and community.</p>
+          
+          <div class="profile-details">
+            <div class="detail">
+              <strong>Role:</strong> Owner & Head Bartender
+            </div>
+            <div class="detail">
+              <strong>Years at Orion's Barrel:</strong> 8 years
+            </div>
+            <div class="detail">
+              <strong>Specialty:</strong> Stellar cocktails & creating community
+            </div>
+            <div class="detail">
+              <strong>Favorite Quote:</strong> "In space, everyone needs a home. Welcome to yours."
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Posts -->
+    <section class="profile-posts">
+      <div class="container">
+        <h2>Recent Posts</h2>
+        <div class="posts-grid">
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/mary.png" alt="Mary" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Mary</h3>
+                <p class="social-post__handle">@BarrelOwner</p>
+                <time class="social-post__time">2h ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Just finished restocking the bar for tonight! Got some new Rigellian whiskey that's absolutely stellar. Come try it before Carl drinks it all! 🍺✨ #OrionsBarrel #NewStock</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 42</button>
+              <button class="social-action">💬 8</button>
+              <button class="social-action">🔄 12</button>
+            </div>
+          </article>
+
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/mary.png" alt="Mary" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Mary</h3>
+                <p class="social-post__handle">@BarrelOwner</p>
+                <time class="social-post__time">1d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Thank you to everyone who came to last night's trivia! The competition was fierce, and congratulations to Team Asteroid Belt for taking home the prize! 🏆✨ #TriviaNight #Community</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 67</button>
+              <button class="social-action">💬 15</button>
+              <button class="social-action">🔄 8</button>
+            </div>
+          </article>
+
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/mary.png" alt="Mary" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Mary</h3>
+                <p class="social-post__handle">@BarrelOwner</p>
+                <time class="social-post__time">2d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>New meditation garden opened on Deck 3! Sometimes we all need a quiet place to decompress from the vastness of space. Come find your center. 🧘‍♀️🌌 #Wellness #Peace</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 54</button>
+              <button class="social-action">💬 12</button>
+              <button class="social-action">🔄 18</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Spacebook -->
+    <section class="back-to-spacebook">
+      <div class="container">
+        <a href="index.html#spacebook" class="button button--spacebook">
+          <span class="spacebook-logo">S</span>
+          Back to Spacebook
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

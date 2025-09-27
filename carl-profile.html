@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carl - Deep Space Miner | Orion's Barrel</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Meet Carl, the friendly deep space miner who dreams of Earth dogs and saving up for his big adventure.">
+</head>
+<body>
+  <!-- Starfield background -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="backdrop-gradient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Orion's Barrel home">
+        <img src="OB Logo.png" alt="Orion's Barrel Logo" class="brand-mark" />
+        <span class="brand-text">Orion's Barrel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#menu">Menu</a>
+        <a href="index.html#locals">Locals</a>
+        <a href="index.html#spacebook">Spacebook</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#arcade">Arcade</a>
+        <a href="index.html#visit">Visit</a>
+        <a class="button button--primary" href="index.html#mailinglist">Join Mailing List</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <!-- Profile Header -->
+    <section class="profile-header">
+      <div class="container">
+        <div class="profile-header__content">
+          <div class="profile-header__image">
+            <img src="orionsbarrel/carl.png" alt="Carl" />
+          </div>
+          <div class="profile-header__info">
+            <h1 class="profile-header__name">Carl</h1>
+            <p class="profile-header__title">Deep Space Miner</p>
+            <p class="profile-header__handle">@MinerCarl</p>
+            <div class="profile-header__stats">
+              <div class="stat">
+                <span class="stat__number">189</span>
+                <span class="stat__label">Posts</span>
+              </div>
+              <div class="stat">
+                <span class="stat__number">567</span>
+                <span class="stat__label">Followers</span>
+              </div>
+              <div class="stat">
+                <span class="stat__number">234</span>
+                <span class="stat__label">Following</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Bio -->
+    <section class="profile-bio">
+      <div class="container">
+        <div class="profile-bio__content">
+          <h2>About Carl</h2>
+          <p>A gentle reptilian with scales that shimmer like emeralds under the station lights. Carl spends his days working the asteroid belts, but his heart belongs to a dream he's never seen—owning a loyal dog from Earth.</p>
+          <p>He's saved up enough credits for three dogs, but first he needs to figure out how to get to the blue planet. Until then, he's the friendliest face at the bar, always ready with a story from the mines and a genuine smile. Carl's optimism is infectious, and his dedication to his dream inspires everyone around him.</p>
+          
+          <div class="profile-details">
+            <div class="detail">
+              <strong>Role:</strong> Deep Space Miner
+            </div>
+            <div class="detail">
+              <strong>Years Mining:</strong> 6 years
+            </div>
+            <div class="detail">
+              <strong>Dream:</strong> To visit Earth and get three dogs
+            </div>
+            <div class="detail">
+              <strong>Specialty:</strong> Rare crystal detection
+            </div>
+            <div class="detail">
+              <strong>Favorite Quote:</strong> "Every crystal I find gets me one step closer to my dogs!"
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Posts -->
+    <section class="profile-posts">
+      <div class="container">
+        <h2>Recent Posts</h2>
+        <div class="posts-grid">
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/carl.png" alt="Carl" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Carl</h3>
+                <p class="social-post__handle">@MinerCarl</p>
+                <time class="social-post__time">4h ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Found the most beautiful crystal formation in the asteroid belt today! Reminded me of those Earth dog photos I've been saving credits to see in person. One day... 🐕💎 #Mining #Dreams</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 67</button>
+              <button class="social-action">💬 15</button>
+              <button class="social-action">🔄 23</button>
+            </div>
+          </article>
+
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/carl.png" alt="Carl" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Carl</h3>
+                <p class="social-post__handle">@MinerCarl</p>
+                <time class="social-post__time">1d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Double shift today but found three rare isotopes! The foreman says I might get a bonus. Every credit gets me closer to Earth and those adorable dogs! 🚀🐕 #MiningLife #Dreams</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 45</button>
+              <button class="social-action">💬 9</button>
+              <button class="social-action">🔄 12</button>
+            </div>
+          </article>
+
+          <article class="social-post">
+            <div class="social-post__header">
+              <img src="orionsbarrel/carl.png" alt="Carl" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Carl</h3>
+                <p class="social-post__handle">@MinerCarl</p>
+                <time class="social-post__time">2d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Watched a documentary about Golden Retrievers during my break. Did you know they were originally bred for hunting? I can't wait to learn everything about them! 📺🐕 #DogFacts #Learning</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 38</button>
+              <button class="social-action">💬 7</button>
+              <button class="social-action">🔄 5</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Spacebook -->
+    <section class="back-to-spacebook">
+      <div class="container">
+        <a href="index.html#spacebook" class="button button--spacebook">
+          <span class="spacebook-logo">S</span>
+          Back to Spacebook
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
