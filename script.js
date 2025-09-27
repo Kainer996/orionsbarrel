@@ -433,8 +433,11 @@ if (heroShip){
   });
 })();
 
-// Dynamic Spacebook Feed System
+// Dynamic Spacebook Feed System - TEMPORARILY DISABLED
 (function() {
+  console.log('Dynamic feed system is disabled for debugging');
+  return; // Exit early to prevent any dynamic feed code from running
+  
   // Pool of posts for each character
   const characterPosts = {
     mary: [
@@ -759,6 +762,11 @@ if (heroShip){
     }
   }
 
+  // Temporarily disable dynamic feed to debug issues
+  // Will re-enable once basic functionality is confirmed working
+  console.log('Dynamic feed system temporarily disabled for debugging');
+  
+  /*
   // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeDynamicFeed);
@@ -766,6 +774,7 @@ if (heroShip){
     // DOM is already ready
     initializeDynamicFeed();
   }
+  */
 
 // Spacebook Comments System
 (function() {
