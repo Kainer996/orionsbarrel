@@ -66,6 +66,21 @@ body{
 .button:hover{transform: translateY(-2px)}
 .button--primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#02131b; box-shadow: 0 6px 18px rgba(71,176,255,.35)}
 .button--ghost{border:1px solid rgba(255,255,255,.2); color:var(--text); background:transparent}
+.button--spacebook{background:#1877f2; color:white; box-shadow: 0 6px 18px rgba(24,119,242,.4); display:flex; align-items:center; gap:8px; font-size:16px; padding:14px 20px}
+.button--spacebook:hover{background:#166fe5; box-shadow: 0 8px 25px rgba(24,119,242,.5)}
+.spacebook-logo{background:white; color:#1877f2; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:serif; font-weight:bold; font-size:16px}
+
+/* Spacebook CTA */
+.spacebook-cta{padding:40px 0; background:linear-gradient(135deg, rgba(24,119,242,.05), rgba(24,119,242,.02))}
+.spacebook-banner{display:flex; align-items:center; justify-content:space-between; background:var(--card); border:1px solid rgba(24,119,242,.1); border-radius:16px; padding:24px; box-shadow: var(--shadow)}
+.spacebook-banner__content{display:flex; align-items:center; gap:16px}
+.spacebook-banner__icon{font-size:32px}
+.spacebook-banner__title{margin:0; font-family:'Space Grotesk', system-ui; font-size:20px; color:var(--text)}
+.spacebook-banner__subtitle{margin:4px 0 0; color:var(--muted); font-size:14px}
+@media (max-width: 768px) {
+  .spacebook-banner{flex-direction:column; gap:20px; text-align:center}
+  .spacebook-banner__content{flex-direction:column; gap:12px}
+}
 
 /* Hero */
 .hero{position:relative; padding:120px 0 56px}
