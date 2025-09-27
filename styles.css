@@ -162,8 +162,8 @@ section[id]{scroll-margin-top: 90px}
 .profile-name{margin:0 0 5px; font-family:'Space Grotesk', system-ui; font-size:28px; color:var(--brand)}
 .profile-handle{margin:0 0 5px; color:var(--accent); font-weight:600; font-size:16px}
 .profile-title{margin:0; color:var(--muted); font-size:14px; text-transform:uppercase; letter-spacing:.5px}
-.back-link{position:absolute; top:0; right:0; color:var(--accent); text-decoration:none; padding:8px 12px; border:1px solid rgba(255,255,255,.1); border-radius:8px; font-size:14px; transition: all .2s ease}
-.back-link:hover{background:rgba(71,176,255,.1); border-color:var(--accent)}
+.profile-section .back-link{position:absolute; top:0; right:0; color:var(--accent); text-decoration:none; padding:8px 12px; border:1px solid rgba(255,255,255,.1); border-radius:8px; font-size:14px; transition: all .2s ease}
+.profile-section .back-link:hover{background:rgba(71,176,255,.1); border-color:var(--accent)}
 .profile-bio{margin-bottom:30px; line-height:1.6; color:var(--text)}
 .profile-stats{display:flex; gap:30px; justify-content:center; padding-top:20px; border-top:1px solid rgba(255,255,255,.05)}
 .stat{text-align:center}

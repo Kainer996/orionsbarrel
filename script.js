@@ -661,61 +661,111 @@ if (heroShip){
   // Update the feed display
   function updateFeedDisplay() {
     const feedContainer = document.querySelector('.social-feed');
-    if (!feedContainer) return;
+    if (!feedContainer) {
+      console.log('Feed container not found, skipping update');
+      return;
+    }
     
-    const posts = generateDynamicFeed();
-    console.log('Updating feed with posts:', posts); // Debug
-    
-    // Update each post's content and stats
-    const postElements = feedContainer.querySelectorAll('.social-post');
-    postElements.forEach((element, index) => {
-      if (index >= posts.length) return;
+    try {
+      const posts = generateDynamicFeed();
+      console.log('Updating feed with posts:', posts.length, 'posts'); // Debug
       
-      const post = posts[index];
-      const character = post.character;
+      // Update each post's content and stats
+      const postElements = feedContainer.querySelectorAll('.social-post');
+      console.log('Found', postElements.length, 'post elements'); // Debug
       
-      // Update content
-      const contentElement = element.querySelector('.social-post__content p');
-      if (contentElement) {
-        contentElement.textContent = post.content;
-      }
+      postElements.forEach((element, index) => {
+        if (index >= posts.length) return;
+        
+        const post = posts[index];
+        const character = post.character;
+        
+        try {
+          // Update content
+          const contentElement = element.querySelector('.social-post__content p');
+          if (contentElement) {
+            contentElement.textContent = post.content;
+          }
+          
+          // Update time
+          const timeElement = element.querySelector('.social-post__time');
+          if (timeElement) {
+            timeElement.textContent = post.baseTime;
+          }
+          
+          // Update action counts with better error handling
+          const actions = element.querySelectorAll('.social-action');
+          if (actions.length >= 3) {
+            // Update likes
+            if (actions[0] && actions[0].textContent.includes('💫')) {
+              actions[0].textContent = `💫 ${post.likes}`;
+            }
+            // Update comments
+            if (actions[1] && actions[1].textContent.includes('💬')) {
+              const currentText = actions[1].textContent;
+              const hideText = currentText.includes('Hide') ? ' (Hide)' : '';
+              actions[1].textContent = `💬 ${post.comments}${hideText}`;
+            }
+            // Update shares
+            if (actions[2] && actions[2].textContent.includes('🔄')) {
+              actions[2].textContent = `🔄 ${post.shares}`;
+            }
+          }
+        } catch (error) {
+          console.error('Error updating post element', index, ':', error);
+        }
+      });
       
-      // Update time
-      const timeElement = element.querySelector('.social-post__time');
-      if (timeElement) {
-        timeElement.textContent = post.baseTime;
-      }
-      
-      // Update action counts
-      const actions = element.querySelectorAll('.social-action');
-      if (actions[0] && actions[0].textContent.includes('💫')) {
-        actions[0].textContent = `💫 ${post.likes}`;
-      }
-      if (actions[1] && actions[1].textContent.includes('💬')) {
-        const currentText = actions[1].textContent;
-        const hideText = currentText.includes('Hide') ? ' (Hide)' : '';
-        actions[1].textContent = `💬 ${post.comments}${hideText}`;
-      }
-      if (actions[2] && actions[2].textContent.includes('🔄')) {
-        actions[2].textContent = `🔄 ${post.shares}`;
-      }
-    });
+      console.log('Feed update completed successfully');
+    } catch (error) {
+      console.error('Error in updateFeedDisplay:', error);
+    }
   }
 
-  // Initialize dynamic feed
-  document.addEventListener('DOMContentLoaded', function() {
-    updateFeedDisplay();
+  // Initialize dynamic feed only if we're on a page with Spacebook
+  function initializeDynamicFeed() {
+    // Check if we're on the Spacebook section or if it exists
+    const feedContainer = document.querySelector('.social-feed');
+    if (!feedContainer) {
+      console.log('No social feed found, skipping dynamic feed initialization');
+      return;
+    }
     
-    // Update feed every hour
-    setInterval(updateFeedDisplay, 60 * 60 * 1000);
-    
-    // Also update when page becomes visible (user returns to tab)
-    document.addEventListener('visibilitychange', function() {
-      if (!document.hidden) {
-        updateFeedDisplay();
-      }
-    });
-  });
+    try {
+      updateFeedDisplay();
+      console.log('Dynamic feed initialized successfully');
+      
+      // Update feed every hour
+      setInterval(function() {
+        try {
+          updateFeedDisplay();
+        } catch (error) {
+          console.error('Error updating feed:', error);
+        }
+      }, 60 * 60 * 1000);
+      
+      // Also update when page becomes visible (user returns to tab)
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+          try {
+            updateFeedDisplay();
+          } catch (error) {
+            console.error('Error updating feed on visibility change:', error);
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error initializing dynamic feed:', error);
+    }
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDynamicFeed);
+  } else {
+    // DOM is already ready
+    initializeDynamicFeed();
+  }
 
 // Spacebook Comments System
 (function() {
