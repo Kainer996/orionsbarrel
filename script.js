@@ -478,8 +478,11 @@ if (heroShip){
   // Toggle comments visibility
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('toggle-comments')) {
+      console.log('Comment button clicked!'); // Debug
       const postId = e.target.getAttribute('data-post');
+      console.log('Post ID:', postId); // Debug
       const commentsSection = document.getElementById('comments-' + postId);
+      console.log('Comments section found:', commentsSection); // Debug
       
       if (commentsSection) {
         commentsSection.classList.toggle('active');
@@ -489,6 +492,9 @@ if (heroShip){
         const currentText = e.target.textContent;
         const commentCount = currentText.match(/\d+/)[0];
         e.target.textContent = isActive ? `💬 ${commentCount} (Hide)` : `💬 ${commentCount}`;
+        console.log('Comments toggled. Active:', isActive); // Debug
+      } else {
+        console.log('Comments section not found for postId:', postId); // Debug
       }
     }
   });
@@ -497,6 +503,7 @@ if (heroShip){
   document.addEventListener('submit', function(e) {
     if (e.target.classList.contains('comment-form')) {
       e.preventDefault();
+      console.log('Comment form submitted!'); // Debug
       
       const form = e.target;
       const input = form.querySelector('.comment-input');
@@ -504,7 +511,12 @@ if (heroShip){
       const postOwner = form.getAttribute('data-post-owner');
       const commentsContainer = form.parentElement.querySelector('.existing-comments');
       
-      if (!input.value.trim()) return;
+      console.log('Form elements found:', {form, input, submitBtn, postOwner, commentsContainer}); // Debug
+      
+      if (!input.value.trim()) {
+        console.log('Empty input value, returning'); // Debug
+        return;
+      }
       
       // Disable form temporarily
       submitBtn.disabled = true;

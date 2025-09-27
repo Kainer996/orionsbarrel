@@ -136,7 +136,7 @@ section[id]{scroll-margin-top: 90px}
 .social-post{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:20px; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease}
 .social-post:hover{transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.4), 0 0 30px rgba(71,176,255,.15)}
 .social-post__header{display:flex; align-items:center; gap:12px; margin-bottom:16px}
-.social-post__avatar{width:48px; height:48px; border-radius:50%; object-fit:cover; border:2px solid rgba(71,176,255,.3)}
+.social-post__avatar{width:48px!important; height:48px!important; border-radius:50%; object-fit:cover; border:2px solid rgba(71,176,255,.3); flex-shrink:0}
 .social-post__info{flex:1}
 .social-post__name{margin:0; font-family:'Space Grotesk', system-ui; font-size:16px; font-weight:600; color:var(--text)}
 .social-post__handle{margin:0; font-size:14px; color:var(--accent); font-weight:500}
