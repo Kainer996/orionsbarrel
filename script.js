@@ -544,8 +544,11 @@ if (heroShip){
       const originalText = submitBtn.textContent;
       submitBtn.textContent = 'Posting...';
       
+      // Store the comment text before clearing
+      const userCommentText = input.value.trim();
+      
       // Create user comment
-      const userComment = createComment('Guest', input.value.trim(), 'Just now', 'https://via.placeholder.com/32/333/fff?text=?');
+      const userComment = createComment('Guest', userCommentText, 'Just now', 'https://via.placeholder.com/32/333/fff?text=?');
       commentsContainer.appendChild(userComment);
       
       // Clear input
@@ -556,7 +559,10 @@ if (heroShip){
         const characterName = postOwner.charAt(0).toUpperCase() + postOwner.slice(1);
         const characterHandle = `@${getCharacterHandle(postOwner)}`;
         const characterImage = `orionsbarrel/${characterName === 'Dick' ? 'Dick' : characterName.toLowerCase()}.png`;
-        const replyText = getContextualReply(postOwner, input.value.trim());
+        const replyText = getContextualReply(postOwner, userCommentText);
+        console.log('User comment:', userCommentText); // Debug
+        console.log('Character:', postOwner); // Debug
+        console.log('Generated reply:', replyText); // Debug
         
         const characterReply = createComment(characterHandle, replyText, 'Just now', characterImage);
         characterReply.classList.add('new-comment');
@@ -611,6 +617,7 @@ if (heroShip){
 
   function getContextualReply(character, userComment) {
     const comment = userComment.toLowerCase();
+    console.log('Processing contextual reply for:', character, 'comment:', comment); // Debug
     
     // Create contextual reply categories for each character
     const contextualReplies = {
@@ -703,5 +710,20 @@ if (heroShip){
   function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
+
+  // Fix spacebar issue in comment inputs
+  document.addEventListener('keydown', function(e) {
+    if (e.target.classList.contains('comment-input') && e.code === 'Space') {
+      e.stopPropagation(); // Prevent any parent handlers from interfering
+      console.log('Spacebar pressed in comment input'); // Debug
+    }
+  });
+
+  // Debug: Log all keyboard events on comment inputs
+  document.addEventListener('keydown', function(e) {
+    if (e.target.classList.contains('comment-input')) {
+      console.log('Key pressed in comment input:', e.key, e.code, e.target.value); // Debug
+    }
+  });
 })();
 
