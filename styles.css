@@ -147,6 +147,26 @@ section[id]{scroll-margin-top: 90px}
 .social-action{background:none; border:none; color:var(--muted); font-size:13px; cursor:pointer; padding:4px 8px; border-radius:6px; transition: all .2s ease; font-family:inherit}
 .social-action:hover{background:rgba(71,176,255,.1); color:var(--accent); transform: scale(1.05)}
 
+/* Comments System */
+.comments-section{display:none; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,.05)}
+.comments-section.active{display:block}
+.existing-comments{margin-bottom:16px}
+.comment{display:flex; gap:10px; margin-bottom:12px; padding:8px 0}
+.comment__avatar{width:32px; height:32px; border-radius:50%; object-fit:cover; flex-shrink:0}
+.comment__content{flex:1; min-width:0}
+.comment__content strong{color:var(--accent); font-size:13px; font-weight:600}
+.comment__content p{margin:2px 0; font-size:14px; line-height:1.4; color:var(--text)}
+.comment__content time{font-size:11px; color:var(--muted)}
+.comment-form{display:flex; gap:10px; align-items:flex-start; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.03)}
+.comment-input-group{flex:1; display:flex; gap:8px}
+.comment-input{flex:1; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:8px 12px; color:var(--text); font-size:13px; font-family:inherit}
+.comment-input:focus{outline:none; border-color:rgba(71,176,255,.4); background:rgba(255,255,255,.05)}
+.comment-submit{background:var(--accent); color:white; border:none; border-radius:20px; padding:8px 16px; font-size:13px; font-weight:600; cursor:pointer; transition: all .2s ease}
+.comment-submit:hover{background:var(--brand); transform: scale(1.05)}
+.comment-submit:disabled{opacity:.5; cursor:not-allowed; transform:none}
+.new-comment{animation: fadeInUp .3s ease}
+@keyframes fadeInUp{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+
 /* Gallery */
 .gallery{width:min(1200px, 94%); margin:10px auto 0; border-radius:20px; overflow:hidden; box-shadow: var(--shadow)}
 .gallery img{width:100%; display:block}

@@ -433,4 +433,152 @@ if (heroShip){
   });
 })();
 
+// Spacebook Comments System
+(function() {
+  // Character personality-based auto-replies
+  const characterReplies = {
+    mary: [
+      "Thank you so much! I always appreciate feedback from our wonderful community! 😊",
+      "That means the world to me! I love creating a welcoming space for everyone. ✨",
+      "You're too kind! Feel free to stop by anytime - the bar is always open! 🍺",
+      "Thanks for the support! It's customers like you that make Orion's Barrel special! 💫"
+    ],
+    carl: [
+      "Thanks! You seem really nice! Maybe you'd want to help me look at dog pictures sometime? 🐕",
+      "That's so encouraging! I'm saving up credits to get to Earth - every positive comment helps! 😊",
+      "You're awesome! When I get my dogs, I'll definitely share pictures with you! 🌟",
+      "Thanks for being so supportive! The asteroid belts can be lonely, but comments like this brighten my day! 💎"
+    ],
+    dick: [
+      "FINALLY! Someone who gets it! Wake up, people! The truth is out there! 👁️",
+      "You're one of the few who can see through their lies! Stay vigilant, friend! 🔍",
+      "Don't let THEM silence you! Keep asking questions and seeking the TRUTH! ⚡",
+      "Exactly! But be careful - they're always watching. Trust no one but yourself! 🛸"
+    ],
+    walter: [
+      "Thank you, young one. In my years among the stars, I've learned that wisdom shared is wisdom doubled.",
+      "Your words warm an old spacer's heart. The universe has a way of connecting kindred spirits.",
+      "I appreciate your thoughtfulness. Sometimes the simplest observations carry the deepest truths.",
+      "Thank you for taking time to share your thoughts. In the vastness of space, every connection matters."
+    ],
+    scally: [
+      "Heh, you know quality when you see it! If you ever need anything... special... you know where to find me. 😉",
+      "Smart person! I like you already. Keep your eyes open for my next... shipment. 📦",
+      "You've got good taste! DM me if you're interested in some exclusive opportunities. 💰",
+      "Appreciate it! Always nice to meet someone who understands the finer things in life. 🎯"
+    ],
+    toni: [
+      "You have excellent taste! If you ever want dining recommendations, I know all the best spots! ✨",
+      "Thanks, beautiful! Life's too short not to appreciate the good things, don't you think? 😉",
+      "You clearly have style! We should grab drinks sometime - I know this amazing place on Deck 5! 🍷",
+      "Much appreciated! I always enjoy connecting with people who appreciate the finer things in life! 💫"
+    ]
+  };
+
+  // Toggle comments visibility
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('toggle-comments')) {
+      const postId = e.target.getAttribute('data-post');
+      const commentsSection = document.getElementById('comments-' + postId);
+      
+      if (commentsSection) {
+        commentsSection.classList.toggle('active');
+        
+        // Update button text
+        const isActive = commentsSection.classList.contains('active');
+        const currentText = e.target.textContent;
+        const commentCount = currentText.match(/\d+/)[0];
+        e.target.textContent = isActive ? `💬 ${commentCount} (Hide)` : `💬 ${commentCount}`;
+      }
+    }
+  });
+
+  // Handle comment form submissions
+  document.addEventListener('submit', function(e) {
+    if (e.target.classList.contains('comment-form')) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const input = form.querySelector('.comment-input');
+      const submitBtn = form.querySelector('.comment-submit');
+      const postOwner = form.getAttribute('data-post-owner');
+      const commentsContainer = form.parentElement.querySelector('.existing-comments');
+      
+      if (!input.value.trim()) return;
+      
+      // Disable form temporarily
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Posting...';
+      
+      // Create user comment
+      const userComment = createComment('Guest', input.value.trim(), 'Just now', 'https://via.placeholder.com/32/333/fff?text=?');
+      commentsContainer.appendChild(userComment);
+      
+      // Clear input
+      input.value = '';
+      
+      // Generate auto-reply from character
+      setTimeout(() => {
+        const characterName = postOwner.charAt(0).toUpperCase() + postOwner.slice(1);
+        const characterHandle = `@${getCharacterHandle(postOwner)}`;
+        const characterImage = `orionsbarrel/${characterName === 'Dick' ? 'Dick' : characterName.toLowerCase()}.png`;
+        const replyText = getRandomReply(postOwner);
+        
+        const characterReply = createComment(characterHandle, replyText, 'Just now', characterImage);
+        characterReply.classList.add('new-comment');
+        commentsContainer.appendChild(characterReply);
+        
+        // Update comment count
+        const toggleBtn = form.parentElement.parentElement.querySelector('.toggle-comments');
+        if (toggleBtn) {
+          const currentText = toggleBtn.textContent;
+          const currentCount = parseInt(currentText.match(/\d+/)[0]);
+          const newCount = currentCount + 2;
+          const isHidden = !currentText.includes('Hide');
+          toggleBtn.textContent = isHidden ? `💬 ${newCount}` : `💬 ${newCount} (Hide)`;
+        }
+        
+        // Re-enable form
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }, 1500 + Math.random() * 2000); // Random delay between 1.5-3.5 seconds
+      
+      // Re-enable form
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  function createComment(username, text, time, avatarSrc) {
+    const comment = document.createElement('div');
+    comment.className = 'comment';
+    comment.innerHTML = `
+      <img src="${avatarSrc}" alt="${username}" class="comment__avatar" />
+      <div class="comment__content">
+        <strong>${username}</strong>
+        <p>${text}</p>
+        <time>${time}</time>
+      </div>
+    `;
+    return comment;
+  }
+
+  function getCharacterHandle(character) {
+    const handles = {
+      mary: 'BarrelOwner',
+      carl: 'MinerCarl',
+      dick: 'TruthSeeker47',
+      walter: 'StationElder',
+      scally: 'ScallyDeals',
+      toni: 'SmoothToni'
+    };
+    return handles[character] || 'Unknown';
+  }
+
+  function getRandomReply(character) {
+    const replies = characterReplies[character] || ['Thanks for the comment!'];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+})();
 
