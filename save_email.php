@@ -35,60 +35,46 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 
-// Prepare data to save
-$timestamp = date('Y-m-d H:i:s');
-$data = [
-    'name' => $name,
-    'email' => $email,
-    'timestamp' => $timestamp,
-    'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
-];
+// Database file
+$db_file = 'orionsbarrel_mailinglist.db';
 
-// File to store email addresses
-$filename = 'mailing_list.json';
-
-// Read existing data
-$existing_data = [];
-if (file_exists($filename)) {
-    $json_content = file_get_contents($filename);
-    if ($json_content !== false) {
-        $existing_data = json_decode($json_content, true) ?? [];
-    }
-}
-
-// Check if email already exists
-foreach ($existing_data as $entry) {
-    if (isset($entry['email']) && strtolower($entry['email']) === strtolower($email)) {
+try {
+    // Connect to SQLite database
+    $db = new PDO('sqlite:' . $db_file);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Check if email already exists
+    $stmt = $db->prepare("SELECT COUNT(*) FROM subscribers WHERE LOWER(email) = LOWER(:email)");
+    $stmt->execute([':email' => $email]);
+    $count = $stmt->fetchColumn();
+    
+    if ($count > 0) {
         sendJsonResponse(false, 'This email is already subscribed to our mailing list');
     }
-}
-
-// Add new entry
-$existing_data[] = $data;
-
-// Save to file
-$json_data = json_encode($existing_data, JSON_PRETTY_PRINT);
-if (file_put_contents($filename, $json_data, LOCK_EX) === false) {
-    sendJsonResponse(false, 'Sorry, there was an error saving your information. Please try again later.');
-}
-
-// Also save to a backup CSV file for easy viewing
-$csv_filename = 'mailing_list.csv';
-$csv_exists = file_exists($csv_filename);
-
-$csv_handle = fopen($csv_filename, 'a');
-if ($csv_handle) {
-    // Add header if file is new
-    if (!$csv_exists) {
-        fputcsv($csv_handle, ['Name', 'Email', 'Timestamp', 'IP Address']);
+    
+    // Insert new subscriber
+    $stmt = $db->prepare("
+        INSERT INTO subscribers (name, email, ip_address, user_agent) 
+        VALUES (:name, :email, :ip_address, :user_agent)
+    ");
+    
+    $result = $stmt->execute([
+        ':name' => $name,
+        ':email' => $email,
+        ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+        ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
+    ]);
+    
+    if ($result) {
+        sendJsonResponse(true, 'Welcome to the crew! You\'ve been added to our stellar mailing list.');
+    } else {
+        sendJsonResponse(false, 'Sorry, there was an error saving your information. Please try again later.');
     }
     
-    // Add the new entry
-    fputcsv($csv_handle, [$name, $email, $timestamp, $data['ip_address']]);
-    fclose($csv_handle);
+} catch (PDOException $e) {
+    // Log the error (in production, log to file instead of displaying)
+    error_log('Database error: ' . $e->getMessage());
+    sendJsonResponse(false, 'Sorry, there was a database error. Please try again later.');
 }
-
-// Send success response
-sendJsonResponse(true, 'Welcome to the crew! You\'ve been added to our stellar mailing list.');
 ?>
 
