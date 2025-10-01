@@ -97,6 +97,9 @@ body{
 .section{padding:88px 0}
 .section--tinted{background: linear-gradient(180deg, transparent, var(--tint)), var(--bg-2)}
 .section__title{font-family:'Space Grotesk', system-ui; font-size:clamp(24px, 3vw, 36px); margin:0 0 16px}
+/* Emphasize Spacebook heading */
+#spacebook-title{font-size:clamp(28px, 4vw, 44px); background:linear-gradient(135deg, var(--brand-2), #a1d4ff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 18px rgba(71,176,255,.28)}
+#spacebook-title::after{content:''; display:block; width:88px; height:3px; margin:10px auto 0; background:linear-gradient(90deg, var(--brand-2), var(--accent)); border-radius:2px; box-shadow:0 0 18px rgba(71,176,255,.35)}
 .grid-2{display:grid; grid-template-columns: 1.2fr 1fr; gap:28px; align-items:start}
 
 /* Anchor offset fixing overlap */
