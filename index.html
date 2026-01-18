@@ -1,51 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Orion's Barrel — Spacefaring Pub</title>
-    <meta name="description" content="Orion's Barrel — a stylish spacefaring pub on Warp Route 7. Stellar cocktails, cosmic bites, and good company among the stars." />
-    <link rel="canonical" href="https://orionsbarrel.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="OB Logo.png" type="image/png" />
 
-    <meta property="og:title" content="Orion's Barrel — Spacefaring Pub" />
-    <meta property="og:description" content="A beautiful, modern pub among the stars. Dock in for stellar cocktails and cosmic bites." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://orionsbarrel.com" />
-    <meta property="og:image" content="OB%20Outside.png" />
-  </head>
-  <body>
-    <!-- Starfield background -->
-    <canvas id="starfield" aria-hidden="true"></canvas>
-    <div class="backdrop-gradient" aria-hidden="true"></div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orion's Barrel — Spacefaring Pub</title>
+  <meta name="description"
+    content="Orion's Barrel — a stylish spacefaring pub on Warp Route 7. Stellar cocktails, cosmic bites, and good company among the stars." />
+  <link rel="canonical" href="https://orionsbarrel.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="OB Logo.png" type="image/png" />
 
-    <header class="site-header">
-      <div class="container nav">
-        <a class="brand" href="#home" aria-label="Orion's Barrel home">
-          <img src="OB Logo.png" alt="Orion's Barrel Logo" class="brand-mark" />
-          <span class="brand-text">Orion's Barrel</span>
-        </a>
-        <nav class="primary-nav" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#menu">Menu</a>
-          <a href="#locals">Locals</a>
-          <a href="#spacebook">Spacebook</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#arcade">Arcade</a>
-          <a href="#visit">Visit</a>
-          <a class="button button--primary" href="#mailinglist">Join Mailing List</a>
-        </nav>
-        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <nav class="mobile-nav" aria-label="Mobile navigation">
+  <meta property="og:title" content="Orion's Barrel — Spacefaring Pub" />
+  <meta property="og:description"
+    content="A beautiful, modern pub among the stars. Dock in for stellar cocktails and cosmic bites." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orionsbarrel.com" />
+  <meta property="og:image" content="OB%20Outside.png" />
+</head>
+
+<body>
+  <!-- Starfield background -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="backdrop-gradient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Orion's Barrel home">
+        <img src="OB Logo.png" alt="Orion's Barrel Logo" class="brand-mark" />
+        <span class="brand-text">Orion's Barrel</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#menu">Menu</a>
         <a href="#locals">Locals</a>
@@ -53,620 +43,704 @@
         <a href="#gallery">Gallery</a>
         <a href="#arcade">Arcade</a>
         <a href="#visit">Visit</a>
-        <a class="button button--primary" href="#book">Book a Table</a>
+        <a class="button button--primary" href="#mailinglist">Join Mailing List</a>
       </nav>
-    </header>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#locals">Locals</a>
+      <a href="#spacebook">Spacebook</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#arcade">Arcade</a>
+      <a href="#visit">Visit</a>
+      <a class="button button--primary" href="#book">Book a Table</a>
+    </nav>
+  </header>
 
-    <main id="home">
-      <!-- HERO -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero__content">
-          <img class="hero__logo" src="OB Logo.png" alt="Orion's Barrel" />
-          <h1 id="hero-title" class="hero__title">Your favorite pub,
-            among the stars.</h1>
-          <p class="hero__tag">Warp Route 7, Orion Spur Express</p>
-          <div class="hero__cta">
-            <a href="#menu" class="button button--primary">View Menu</a>
-            <a href="#mailinglist" class="button button--ghost">Join List</a>
-          </div>
-        </div>
-        <div class="hero__ship" role="img" aria-label="Exterior view of Orion's Barrel">
-          <img src="OB Outside.png" alt="Orion's Barrel exterior" />
-        </div>
-      </section>
-
-      <!-- SPACEBOOK CTA -->
-      <section class="spacebook-cta" aria-labelledby="spacebook-cta-title">
-        <div class="container">
-          <div class="spacebook-banner">
-            <div class="spacebook-banner__content">
-              <div class="spacebook-banner__icon">📱</div>
-              <div class="spacebook-banner__text">
-                <h3 id="spacebook-cta-title" class="spacebook-banner__title">Join the Conversation</h3>
-                <p class="spacebook-banner__subtitle">Connect with locals on Spacebook</p>
-              </div>
-            </div>
-            <a href="#spacebook" class="button button--spacebook">
-              <span class="spacebook-logo">S</span>
-              Open Spacebook
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="section" aria-labelledby="about-title">
-        <div class="container grid-2">
-          <div class="reveal">
-            <h2 id="about-title" class="section__title">A pub with a view of infinity</h2>
-            <p>
-              Nestled along Warp Route 7, Orion's Barrel is where merchants, pilots,
-              researchers, and daydreamers meet for a drink between the stars. Our
-              mixologists craft stellar cocktails with locally-sourced nebula botanicals,
-              while the kitchen serves hearty cosmic bites to keep your boosters running.
-            </p>
-            <p>
-              Whether you're celebrating a successful jump or planning your next expedition,
-              you'll find warm light, good music, and better company at the Barrel.
-            </p>
-            <div class="badges">
-              <span class="badge">Zero-Gravity Friendly</span>
-              <span class="badge">Live Synthwave Fridays</span>
-              <span class="badge">AI Sommelier</span>
-            </div>
-          </div>
-          <div class="card reveal">
-            <h3 class="card__title">Tonight's Features</h3>
-            <ul class="feature-list">
-              <li>
-                <span class="feature-title">Dark Matter Old Fashioned</span>
-                <span class="feature-note">smoked comet bitters, asteroid sugar</span>
-              </li>
-              <li>
-                <span class="feature-title">Aurora Spritz</span>
-                <span class="feature-note">ionized citrus, stardust prosecco</span>
-              </li>
-              <li>
-                <span class="feature-title">Solar Flare Bao</span>
-                <span class="feature-note">spiced nebula jackfruit, glow slaw</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- MENU PREVIEW -->
-      <section id="menu" class="section section--tinted" aria-labelledby="menu-title">
-        <div class="container">
-          <h2 id="menu-title" class="section__title center">Stellar sips and cosmic bites</h2>
-          <div class="cards">
-            <article class="card reveal">
-              <h3 class="card__title">Signature Cocktails</h3>
-              <p>Inventive mixes designed for deep-space evenings. Balanced, bright, and occasionally explosive (in flavor).</p>
-              <a class="link" href="#mailinglist">Join our crew</a>
-            </article>
-            <article class="card reveal">
-              <h3 class="card__title">Small Plates</h3>
-              <p>Comfort food meets starport cravings: bao, sliders, nebula fries, and station-fresh greens.</p>
-              <a class="link" href="#mailinglist">Get updates</a>
-            </article>
-            <article class="card reveal">
-              <h3 class="card__title">Zero-Proof</h3>
-              <p>Luminous, layered, and alcohol-free options for pilots on duty and explorers off-call.</p>
-              <a class="link" href="#mailinglist">Stay informed</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- LOCALS -->
-      <section id="locals" class="section" aria-labelledby="locals-title">
-        <div class="container">
-          <h2 id="locals-title" class="section__title center">Meet the Locals</h2>
-          <p class="center" style="margin: 0 0 48px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
-            The colorful characters who call Orion's Barrel home. Each with their own story, dreams, and reasons for finding themselves among the stars.
-          </p>
-          <div class="locals-grid">
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/mary.png" alt="Mary the owner" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Mary</h3>
-                <p class="local-card__title">Owner & Proprietor</p>
-                <p class="local-card__bio">
-                  The heart and soul of Orion's Barrel, Mary is a graceful alien woman whose warm presence makes everyone feel welcome in the vastness of space. With her keen business sense and genuine care for her patrons, she's turned this remote station into a true home away from home. Mary has an uncanny ability to remember everyone's favorite drink and always knows exactly what someone needs—whether it's a strong cocktail, a listening ear, or just a place to belong among the stars.
-                </p>
-              </div>
-            </article>
-
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/carl.png" alt="Carl the miner" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Carl</h3>
-                <p class="local-card__title">Deep Space Miner</p>
-                <p class="local-card__bio">
-                  A gentle reptilian with scales that shimmer like emeralds under the station lights. Carl spends his days working the asteroid belts, but his heart belongs to a dream he's never seen—owning a loyal dog from Earth. He's saved up enough credits for three dogs, but first he needs to figure out how to get to the blue planet. Until then, he's the friendliest face at the bar, always ready with a story from the mines and a genuine smile.
-                </p>
-              </div>
-            </article>
-
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/walter.png" alt="Walter the old timer" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Walter</h3>
-                <p class="local-card__title">Station Elder</p>
-                <p class="local-card__bio">
-                  The oldest regular at the Barrel, Walter has seen three different owners run this place and helped build half the station with his own weathered hands. His purple-tinged skin tells the story of decades spent in the cosmic radiation of deep space. Walter doesn't say much, but when he does speak, everyone listens. He's got wisdom earned through countless jumps, close calls, and quiet nights watching the stars wheel by.
-                </p>
-              </div>
-            </article>
-
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/Scally.png" alt="Scally the dealer" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Scally</h3>
-                <p class="local-card__title">Procurement Specialist</p>
-                <p class="local-card__bio">
-                  If you need something that's not on the menu—or the manifest—Scally's your guy. This shifty character with the quick smile and quicker hands can get you anything from rare spices to questionable pharmaceuticals. He operates in the gray spaces between legal and illegal, always with one eye on the exit and the other on the next deal. Don't ask too many questions, and you'll get along just fine.
-                </p>
-              </div>
-            </article>
-
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/Dick.png" alt="Dick the conspiracy theorist" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Dick</h3>
-                <p class="local-card__title">Truth Seeker</p>
-                <p class="local-card__bio">
-                  Dick's the kind of guy who thinks he's figured out what "they" don't want you to know—and he's not shy about sharing it. With his perpetual scowl and condescending tone, he'll lecture anyone within earshot about government cover-ups, false flag operations, and how the space lanes are really controlled by shadowy corporate overlords. His arrogance is only matched by his certainty that everyone else is just too blind to see the "obvious" truth. Most patrons have learned to nod politely and slowly back away when Dick starts talking.
-                </p>
-              </div>
-            </article>
-
-            <article class="local-card reveal">
-              <div class="local-card__image">
-                <img src="orionsbarrel/Toni.png" alt="Toni the smooth player" />
-              </div>
-              <div class="local-card__content">
-                <h3 class="local-card__name">Toni</h3>
-                <p class="local-card__title">Interstellar Charmer</p>
-                <p class="local-card__bio">
-                  Toni's got that effortless charm that works across species and star systems. With his perfectly styled hair and that confident smile, he's never seen without some new romantic interest on his arm. Whether it's a Zephyrian diplomat, a cargo pilot from the Outer Rim, or a mysterious trader passing through, Toni somehow always knows exactly what to say. He treats every conversation like a dance and every night like an adventure. The regulars have a running bet on how long his latest romance will last—though they all secretly admire his smooth operator lifestyle.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- SPACEBOOK -->
-      <section id="spacebook" class="section section--tinted" aria-labelledby="spacebook-title">
-        <div class="container">
-          <h2 id="spacebook-title" class="section__title center">Spacebook</h2>
-          <p class="center" style="margin: 0 0 48px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
-            The galaxy's favorite social network. Stay connected with locals and travelers across the station.
-          </p>
-          <div class="social-feed">
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <a href="mary-profile.html" class="profile-link">
-                  <img src="orionsbarrel/mary.png" alt="Mary" class="social-post__avatar" />
-                </a>
-                <div class="social-post__info">
-                  <a href="mary-profile.html" class="profile-link">
-                    <h3 class="social-post__name">Mary</h3>
-                  </a>
-                  <p class="social-post__handle">@BarrelOwner</p>
-                  <time class="social-post__time">2h ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>Just finished restocking the bar for tonight! Got some new Rigellian whiskey that's absolutely stellar. Come try it before Carl drinks it all! 🍺✨ #OrionsBarrel #NewStock</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 42</button>
-                <button class="social-action toggle-comments" data-post="mary-1">💬 8</button>
-                <button class="social-action">🔄 12</button>
-              </div>
-              <div class="comments-section" id="comments-mary-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@MinerCarl</strong>
-                      <p>Count me in! I've been working double shifts all week and could use some of that Rigellian whiskey! 🍻</p>
-                      <time>1h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@BarrelOwner</strong>
-                      <p>@MinerCarl It'll be waiting for you! I'll make sure to save you a glass of the good stuff. 😊</p>
-                      <time>45m ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/Toni.png" alt="Toni" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@SmoothToni</strong>
-                      <p>Perfect timing! I was just telling someone about your excellent taste in spirits. See you tonight! ✨</p>
-                      <time>30m ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="mary">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <a href="carl-profile.html" class="profile-link">
-                  <img src="orionsbarrel/carl.png" alt="Carl" class="social-post__avatar" />
-                </a>
-                <div class="social-post__info">
-                  <a href="carl-profile.html" class="profile-link">
-                    <h3 class="social-post__name">Carl</h3>
-                  </a>
-                  <p class="social-post__handle">@MinerCarl</p>
-                  <time class="social-post__time">4h ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>Found the most beautiful crystal formation in the asteroid belt today! Reminded me of those Earth dog photos I've been saving credits to see in person. One day... 🐕💎 #Mining #Dreams</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 67</button>
-                <button class="social-action toggle-comments" data-post="carl-1">💬 15</button>
-                <button class="social-action">🔄 23</button>
-              </div>
-              <div class="comments-section" id="comments-carl-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/walter.png" alt="Walter" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@StationElder</strong>
-                      <p>That's beautiful, Carl. Sometimes the universe shows us what we're searching for in the most unexpected places.</p>
-                      <time>3h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@MinerCarl</strong>
-                      <p>@StationElder Thanks Walter! Your words always make me feel hopeful about the journey ahead. 🌟</p>
-                      <time>2h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@BarrelOwner</strong>
-                      <p>Carl, you'll get to Earth one day! I believe in you. And when you do, those dogs will be lucky to have you! 🐕❤️</p>
-                      <time>1h ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="carl">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <img src="orionsbarrel/Dick.png" alt="Dick" class="social-post__avatar" />
-                <div class="social-post__info">
-                  <h3 class="social-post__name">Dick</h3>
-                  <p class="social-post__handle">@TruthSeeker47</p>
-                  <time class="social-post__time">6h ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>WAKE UP SHEEPLE! The new "asteroid mining permits" are just a cover for corporate surveillance drones! They're tracking every move we make out here! #TruthBomb #WakeUp #StayWoke</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 3</button>
-                <button class="social-action toggle-comments" data-post="dick-1">💬 1</button>
-                <button class="social-action">🔄 0</button>
-              </div>
-              <div class="comments-section" id="comments-dick-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/Scally.png" alt="Scally" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@ScallyDeals</strong>
-                      <p>Dick, you're scaring away the customers again... 🙄</p>
-                      <time>5h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/Dick.png" alt="Dick" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@TruthSeeker47</strong>
-                      <p>@ScallyDeals The TRUTH is more important than your precious business, Scally! Open your eyes!</p>
-                      <time>4h ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="dick">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <img src="orionsbarrel/walter.png" alt="Walter" class="social-post__avatar" />
-                <div class="social-post__info">
-                  <h3 class="social-post__name">Walter</h3>
-                  <p class="social-post__handle">@StationElder</p>
-                  <time class="social-post__time">1d ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>Watched three shooting stars pass by the observation deck tonight. In my 40 years out here, the universe still finds ways to surprise an old spacer. Sometimes the best conversation is just silence and stars.</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 89</button>
-                <button class="social-action toggle-comments" data-post="walter-1">💬 24</button>
-                <button class="social-action">🔄 31</button>
-              </div>
-              <div class="comments-section" id="comments-walter-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@MinerCarl</strong>
-                      <p>Walter, your posts always make me stop and think. Thank you for sharing your wisdom with us youngsters! 🌟</p>
-                      <time>20h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@BarrelOwner</strong>
-                      <p>This is beautiful, Walter. You have such a poetic way of seeing the universe. 💫</p>
-                      <time>18h ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/walter.png" alt="Walter" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@StationElder</strong>
-                      <p>Thank you both. Sometimes an old spacer just needs to share what the stars whisper to him.</p>
-                      <time>15h ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="walter">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <img src="orionsbarrel/Scally.png" alt="Scally" class="social-post__avatar" />
-                <div class="social-post__info">
-                  <h3 class="social-post__name">Scally</h3>
-                  <p class="social-post__handle">@ScallyDeals</p>
-                  <time class="social-post__time">2d ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>Got some "special imports" arriving on the next freight run. You know where to find me if you need anything... interesting. DM for details. 😉 #SpecialDelivery #AskNoQuestions</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 18</button>
-                <button class="social-action toggle-comments" data-post="scally-1">💬 7</button>
-                <button class="social-action">🔄 4</button>
-              </div>
-              <div class="comments-section" id="comments-scally-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/Dick.png" alt="Dick" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@TruthSeeker47</strong>
-                      <p>More corporate contraband, Scally? Wake up! You're just a pawn in their game!</p>
-                      <time>1d ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/Scally.png" alt="Scally" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@ScallyDeals</strong>
-                      <p>@TruthSeeker47 Dick, you overthink everything. Sometimes a cigar is just a cigar, you know? 😂</p>
-                      <time>1d ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="scally">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-
-            <article class="social-post reveal">
-              <div class="social-post__header">
-                <img src="orionsbarrel/Toni.png" alt="Toni" class="social-post__avatar" />
-                <div class="social-post__info">
-                  <h3 class="social-post__name">Toni</h3>
-                  <p class="social-post__handle">@SmoothToni</p>
-                  <time class="social-post__time">3d ago</time>
-                </div>
-              </div>
-              <div class="social-post__content">
-                <p>Amazing dinner at the new Andromedan restaurant on Deck 7 last night. The company was even better than the nebula wine 😍 Life's too short for boring conversations and bad drinks. #LivingMyBestLife #Romance</p>
-              </div>
-              <div class="social-post__actions">
-                <button class="social-action">💫 127</button>
-                <button class="social-action toggle-comments" data-post="toni-1">💬 34</button>
-                <button class="social-action">🔄 19</button>
-              </div>
-              <div class="comments-section" id="comments-toni-1">
-                <div class="existing-comments">
-                  <div class="comment">
-                    <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@BarrelOwner</strong>
-                      <p>Toni, you always know the best spots! Hope you had a wonderful evening! ✨</p>
-                      <time>2d ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@MinerCarl</strong>
-                      <p>Teach me your ways, Toni! I can't even get a dog to like me, let alone... well, anyone else! 😅</p>
-                      <time>2d ago</time>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <img src="orionsbarrel/Toni.png" alt="Toni" class="comment__avatar" />
-                    <div class="comment__content">
-                      <strong>@SmoothToni</strong>
-                      <p>@MinerCarl Carl, my friend, confidence is key! And when you get those dogs, they'll love you instantly. Trust me! 😉</p>
-                      <time>2d ago</time>
-                    </div>
-                  </div>
-                </div>
-                <form class="comment-form" data-post-owner="toni">
-                  <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
-                  <div class="comment-input-group">
-                    <input type="text" placeholder="Add a comment..." class="comment-input" required />
-                    <button type="submit" class="comment-submit">Post</button>
-                  </div>
-                </form>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- GALLERY -->
-      <section id="gallery" class="section" aria-labelledby="gallery-title">
-        <div class="container">
-          <h2 id="gallery-title" class="section__title center">A glimpse outside</h2>
-        </div>
-        <div class="gallery reveal">
-          <img src="OB Outside.png" alt="The exterior of Orion's Barrel in orbit" />
-        </div>
-      </section>
-
-      <!-- ARCADE -->
-      <section id="arcade" class="section section--tinted" aria-labelledby="arcade-title">
-        <div class="container">
-          <h2 id="arcade-title" class="section__title center">Arcade — Barrel Invaders</h2>
-          <p class="center" style="margin:0 0 18px; color: var(--muted)">
-            <span class="desktop-controls">Defend the Barrel from mischievous space gremlins. Use ← → to move, Space to fire.</span>
-            <span class="mobile-controls">Defend the Barrel from mischievous space gremlins. Touch and drag to move, tap to fire.</span>
-          </p>
-          <div class="arcade reveal">
-            <div class="arcade__hud">
-              <div><strong>Score:</strong> <span id="score">0</span></div>
-              <div><strong>Lives:</strong> <span id="lives">3</span></div>
-              <div id="status" aria-live="polite"></div>
-            </div>
-            <canvas id="arcade-canvas" width="480" height="640" aria-label="Barrel Invaders game area"></canvas>
-            <div class="arcade__controls">
-              <button id="startBtn" class="button button--primary" type="button">Start</button>
-              <button id="pauseBtn" class="button button--ghost" type="button">Pause</button>
-              <button id="resetBtn" class="button button--ghost" type="button">Reset</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- VISIT / CONTACT -->
-      <section id="visit" class="section section--tinted" aria-labelledby="visit-title">
-        <div class="container grid-2">
-          <div class="reveal">
-            <h2 id="visit-title" class="section__title">Dock with us</h2>
-            <p>
-              Find us at <strong>Warp Route 7</strong>, Orion Spur Express. Approach vector and
-              docking guidance transmitted on standard beacons. Atmosphere rated for all Class-M
-              species. Gravity normalized to 1.0g.
-            </p>
-            <p>
-              Questions about private hangars, events, or large crews? Send us a hail and we'll
-              configure a bay for you.
-            </p>
-            <div class="contact">
-              <a class="link" href="mailto:hail@orionsbarrel.com">hail@orionsbarrel.com</a>
-              <a class="link" href="https://orionsbarrel.com" target="_blank" rel="noopener">orionsbarrel.com</a>
-            </div>
-          </div>
-          <form id="mailinglist" class="card reveal" aria-labelledby="mailinglist-title" action="save_email.php" method="POST">
-            <h3 id="mailinglist-title" class="card__title">Join our stellar mailing list</h3>
-            <p style="margin: 0 0 24px; color: var(--muted); font-size: 14px;">
-              Stay in the loop with cosmic events, new menu items, and special promotions at the Barrel.
-            </p>
-            <label>
-              <span>Name</span>
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" required />
-            </label>
-            <button class="button button--primary" type="submit">Join the Crew</button>
-            <p class="form-note">We'll send you stellar updates via subspace transmission.</p>
-            <div id="form-message" style="margin-top: 16px; padding: 12px; border-radius: 8px; display: none;"></div>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer__content">
-        <div class="footer__brand">
-          <img src="OB Logo.png" alt="Orion's Barrel logo small" />
-          <p>© <span id="year"></span> Orion's Barrel. All rights reserved across this sector.</p>
-        </div>
-        <div class="footer__links">
-          <a class="link" href="#about">About</a>
-          <a class="link" href="#menu">Menu</a>
-          <a class="link" href="#locals">Locals</a>
-          <a class="link" href="#gallery">Gallery</a>
-          <a class="link" href="#visit">Visit</a>
+  <main id="home">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__content">
+        <img class="hero__logo" src="OB Logo.png" alt="Orion's Barrel" />
+        <h1 id="hero-title" class="hero__title">Your favorite pub,
+          among the stars.</h1>
+        <p class="hero__tag">Warp Route 7, Orion Spur Express</p>
+        <div class="hero__cta">
+          <a href="#menu" class="button button--primary">View Menu</a>
+          <a href="#mailinglist" class="button button--ghost">Join List</a>
         </div>
       </div>
-    </footer>
+      <div class="hero__ship" role="img" aria-label="Exterior view of Orion's Barrel">
+        <img src="bar.png" alt="Orion's Barrel exterior" />
+      </div>
+    </section>
 
-    <script src="script.js" defer></script>
-  </body>
-  </html>
+    <!-- TRAILER -->
+    <section id="trailer" class="section trailer-section" aria-labelledby="trailer-title">
+      <div class="container">
+        <h2 id="trailer-title" class="section__title center">Watch the Trailer</h2>
+        <p class="center"
+          style="margin: 0 0 48px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+          Step into the cosmic atmosphere of Orion's Barrel — where every visit is an adventure among the stars.
+        </p>
+        <div class="trailer-wrapper reveal">
+          <div class="trailer-container">
+            <video id="trailer-video" class="trailer-video" controls playsinline poster="bar.png">
+              <source src="orionsbarrel/Orion' Barrel Trailer.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+            <div class="trailer-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- SPACEBOOK CTA -->
+    <section class="spacebook-cta" aria-labelledby="spacebook-cta-title">
+      <div class="container">
+        <div class="spacebook-banner">
+          <div class="spacebook-banner__content">
+            <div class="spacebook-banner__icon">📱</div>
+            <div class="spacebook-banner__text">
+              <h3 id="spacebook-cta-title" class="spacebook-banner__title">Join the Conversation</h3>
+              <p class="spacebook-banner__subtitle">Connect with locals on Spacebook</p>
+            </div>
+          </div>
+          <a href="#spacebook" class="button button--spacebook">
+            <span class="spacebook-logo">S</span>
+            Open Spacebook
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container grid-2">
+        <div class="reveal">
+          <h2 id="about-title" class="section__title">A pub with a view of infinity</h2>
+          <p>
+            Nestled along Warp Route 7, Orion's Barrel is where merchants, pilots,
+            researchers, and daydreamers meet for a drink between the stars. Our
+            mixologists craft stellar cocktails with locally-sourced nebula botanicals,
+            while the kitchen serves hearty cosmic bites to keep your boosters running.
+          </p>
+          <p>
+            Whether you're celebrating a successful jump or planning your next expedition,
+            you'll find warm light, good music, and better company at the Barrel.
+          </p>
+          <div class="badges">
+            <span class="badge">Zero-Gravity Friendly</span>
+            <span class="badge">Live Synthwave Fridays</span>
+            <span class="badge">AI Sommelier</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3 class="card__title">Tonight's Features</h3>
+          <ul class="feature-list">
+            <li>
+              <span class="feature-title">Dark Matter Old Fashioned</span>
+              <span class="feature-note">smoked comet bitters, asteroid sugar</span>
+            </li>
+            <li>
+              <span class="feature-title">Aurora Spritz</span>
+              <span class="feature-note">ionized citrus, stardust prosecco</span>
+            </li>
+            <li>
+              <span class="feature-title">Solar Flare Bao</span>
+              <span class="feature-note">spiced nebula jackfruit, glow slaw</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU PREVIEW -->
+    <section id="menu" class="section section--tinted" aria-labelledby="menu-title">
+      <div class="container">
+        <h2 id="menu-title" class="section__title center">Stellar sips and cosmic bites</h2>
+        <div class="cards">
+          <article class="card reveal">
+            <h3 class="card__title">Signature Cocktails</h3>
+            <p>Inventive mixes designed for deep-space evenings. Balanced, bright, and occasionally explosive (in
+              flavor).</p>
+            <a class="link" href="#mailinglist">Join our crew</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card__title">Small Plates</h3>
+            <p>Comfort food meets starport cravings: bao, sliders, nebula fries, and station-fresh greens.</p>
+            <a class="link" href="#mailinglist">Get updates</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card__title">Zero-Proof</h3>
+            <p>Luminous, layered, and alcohol-free options for pilots on duty and explorers off-call.</p>
+            <a class="link" href="#mailinglist">Stay informed</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCALS -->
+    <section id="locals" class="section" aria-labelledby="locals-title">
+      <div class="container">
+        <h2 id="locals-title" class="section__title center">Meet the Locals</h2>
+        <p class="center"
+          style="margin: 0 0 48px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+          The colorful characters who call Orion's Barrel home. Each with their own story, dreams, and reasons for
+          finding themselves among the stars.
+        </p>
+        <div class="locals-grid">
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/mary.png" alt="Mary the owner" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Mary</h3>
+              <p class="local-card__title">Owner & Proprietor</p>
+              <p class="local-card__bio">
+                The heart and soul of Orion's Barrel, Mary is a graceful alien woman whose warm presence makes everyone
+                feel welcome in the vastness of space. With her keen business sense and genuine care for her patrons,
+                she's turned this remote station into a true home away from home. Mary has an uncanny ability to
+                remember everyone's favorite drink and always knows exactly what someone needs—whether it's a strong
+                cocktail, a listening ear, or just a place to belong among the stars.
+              </p>
+            </div>
+          </article>
+
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/carl.png" alt="Carl the miner" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Carl</h3>
+              <p class="local-card__title">Deep Space Miner</p>
+              <p class="local-card__bio">
+                A gentle reptilian with scales that shimmer like emeralds under the station lights. Carl spends his days
+                working the asteroid belts, but his heart belongs to a dream he's never seen—owning a loyal dog from
+                Earth. He's saved up enough credits for three dogs, but first he needs to figure out how to get to the
+                blue planet. Until then, he's the friendliest face at the bar, always ready with a story from the mines
+                and a genuine smile.
+              </p>
+            </div>
+          </article>
+
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/walter.png" alt="Walter the old timer" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Walter</h3>
+              <p class="local-card__title">Station Elder</p>
+              <p class="local-card__bio">
+                The oldest regular at the Barrel, Walter has seen three different owners run this place and helped build
+                half the station with his own weathered hands. His purple-tinged skin tells the story of decades spent
+                in the cosmic radiation of deep space. Walter doesn't say much, but when he does speak, everyone
+                listens. He's got wisdom earned through countless jumps, close calls, and quiet nights watching the
+                stars wheel by.
+              </p>
+            </div>
+          </article>
+
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/Scally.png" alt="Scally the dealer" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Scally</h3>
+              <p class="local-card__title">Procurement Specialist</p>
+              <p class="local-card__bio">
+                If you need something that's not on the menu—or the manifest—Scally's your guy. This shifty character
+                with the quick smile and quicker hands can get you anything from rare spices to questionable
+                pharmaceuticals. He operates in the gray spaces between legal and illegal, always with one eye on the
+                exit and the other on the next deal. Don't ask too many questions, and you'll get along just fine.
+              </p>
+            </div>
+          </article>
+
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/Dick.png" alt="Dick the conspiracy theorist" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Dick</h3>
+              <p class="local-card__title">Truth Seeker</p>
+              <p class="local-card__bio">
+                Dick's the kind of guy who thinks he's figured out what "they" don't want you to know—and he's not shy
+                about sharing it. With his perpetual scowl and condescending tone, he'll lecture anyone within earshot
+                about government cover-ups, false flag operations, and how the space lanes are really controlled by
+                shadowy corporate overlords. His arrogance is only matched by his certainty that everyone else is just
+                too blind to see the "obvious" truth. Most patrons have learned to nod politely and slowly back away
+                when Dick starts talking.
+              </p>
+            </div>
+          </article>
+
+          <article class="local-card reveal">
+            <div class="local-card__image">
+              <img src="orionsbarrel/Toni.png" alt="Toni the smooth player" />
+            </div>
+            <div class="local-card__content">
+              <h3 class="local-card__name">Toni</h3>
+              <p class="local-card__title">Interstellar Charmer</p>
+              <p class="local-card__bio">
+                Toni's got that effortless charm that works across species and star systems. With his perfectly styled
+                hair and that confident smile, he's never seen without some new romantic interest on his arm. Whether
+                it's a Zephyrian diplomat, a cargo pilot from the Outer Rim, or a mysterious trader passing through,
+                Toni somehow always knows exactly what to say. He treats every conversation like a dance and every night
+                like an adventure. The regulars have a running bet on how long his latest romance will last—though they
+                all secretly admire his smooth operator lifestyle.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACEBOOK -->
+    <section id="spacebook" class="section section--tinted" aria-labelledby="spacebook-title">
+      <div class="container">
+        <h2 id="spacebook-title" class="section__title center">Spacebook</h2>
+        <p class="center"
+          style="margin: 0 0 48px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+          The galaxy's favorite social network. Stay connected with locals and travelers across the station.
+        </p>
+        <div class="social-feed">
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <a href="mary-profile.html" class="profile-link">
+                <img src="orionsbarrel/mary.png" alt="Mary" class="social-post__avatar" />
+              </a>
+              <div class="social-post__info">
+                <a href="mary-profile.html" class="profile-link">
+                  <h3 class="social-post__name">Mary</h3>
+                </a>
+                <p class="social-post__handle">@BarrelOwner</p>
+                <time class="social-post__time">2h ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Just finished restocking the bar for tonight! Got some new Rigellian whiskey that's absolutely stellar.
+                Come try it before Carl drinks it all! 🍺✨ #OrionsBarrel #NewStock</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 42</button>
+              <button class="social-action toggle-comments" data-post="mary-1">💬 8</button>
+              <button class="social-action">🔄 12</button>
+            </div>
+            <div class="comments-section" id="comments-mary-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@MinerCarl</strong>
+                    <p>Count me in! I've been working double shifts all week and could use some of that Rigellian
+                      whiskey! 🍻</p>
+                    <time>1h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@BarrelOwner</strong>
+                    <p>@MinerCarl It'll be waiting for you! I'll make sure to save you a glass of the good stuff. 😊</p>
+                    <time>45m ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/Toni.png" alt="Toni" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@SmoothToni</strong>
+                    <p>Perfect timing! I was just telling someone about your excellent taste in spirits. See you
+                      tonight! ✨</p>
+                    <time>30m ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="mary">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <a href="carl-profile.html" class="profile-link">
+                <img src="orionsbarrel/carl.png" alt="Carl" class="social-post__avatar" />
+              </a>
+              <div class="social-post__info">
+                <a href="carl-profile.html" class="profile-link">
+                  <h3 class="social-post__name">Carl</h3>
+                </a>
+                <p class="social-post__handle">@MinerCarl</p>
+                <time class="social-post__time">4h ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Found the most beautiful crystal formation in the asteroid belt today! Reminded me of those Earth dog
+                photos I've been saving credits to see in person. One day... 🐕💎 #Mining #Dreams</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 67</button>
+              <button class="social-action toggle-comments" data-post="carl-1">💬 15</button>
+              <button class="social-action">🔄 23</button>
+            </div>
+            <div class="comments-section" id="comments-carl-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/walter.png" alt="Walter" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@StationElder</strong>
+                    <p>That's beautiful, Carl. Sometimes the universe shows us what we're searching for in the most
+                      unexpected places.</p>
+                    <time>3h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@MinerCarl</strong>
+                    <p>@StationElder Thanks Walter! Your words always make me feel hopeful about the journey ahead. 🌟
+                    </p>
+                    <time>2h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@BarrelOwner</strong>
+                    <p>Carl, you'll get to Earth one day! I believe in you. And when you do, those dogs will be lucky to
+                      have you! 🐕❤️</p>
+                    <time>1h ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="carl">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <img src="orionsbarrel/Dick.png" alt="Dick" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Dick</h3>
+                <p class="social-post__handle">@TruthSeeker47</p>
+                <time class="social-post__time">6h ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>WAKE UP SHEEPLE! The new "asteroid mining permits" are just a cover for corporate surveillance drones!
+                They're tracking every move we make out here! #TruthBomb #WakeUp #StayWoke</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 3</button>
+              <button class="social-action toggle-comments" data-post="dick-1">💬 1</button>
+              <button class="social-action">🔄 0</button>
+            </div>
+            <div class="comments-section" id="comments-dick-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/Scally.png" alt="Scally" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@ScallyDeals</strong>
+                    <p>Dick, you're scaring away the customers again... 🙄</p>
+                    <time>5h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/Dick.png" alt="Dick" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@TruthSeeker47</strong>
+                    <p>@ScallyDeals The TRUTH is more important than your precious business, Scally! Open your eyes!</p>
+                    <time>4h ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="dick">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <img src="orionsbarrel/walter.png" alt="Walter" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Walter</h3>
+                <p class="social-post__handle">@StationElder</p>
+                <time class="social-post__time">1d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Watched three shooting stars pass by the observation deck tonight. In my 40 years out here, the
+                universe still finds ways to surprise an old spacer. Sometimes the best conversation is just silence and
+                stars.</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 89</button>
+              <button class="social-action toggle-comments" data-post="walter-1">💬 24</button>
+              <button class="social-action">🔄 31</button>
+            </div>
+            <div class="comments-section" id="comments-walter-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@MinerCarl</strong>
+                    <p>Walter, your posts always make me stop and think. Thank you for sharing your wisdom with us
+                      youngsters! 🌟</p>
+                    <time>20h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@BarrelOwner</strong>
+                    <p>This is beautiful, Walter. You have such a poetic way of seeing the universe. 💫</p>
+                    <time>18h ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/walter.png" alt="Walter" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@StationElder</strong>
+                    <p>Thank you both. Sometimes an old spacer just needs to share what the stars whisper to him.</p>
+                    <time>15h ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="walter">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <img src="orionsbarrel/Scally.png" alt="Scally" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Scally</h3>
+                <p class="social-post__handle">@ScallyDeals</p>
+                <time class="social-post__time">2d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Got some "special imports" arriving on the next freight run. You know where to find me if you need
+                anything... interesting. DM for details. 😉 #SpecialDelivery #AskNoQuestions</p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 18</button>
+              <button class="social-action toggle-comments" data-post="scally-1">💬 7</button>
+              <button class="social-action">🔄 4</button>
+            </div>
+            <div class="comments-section" id="comments-scally-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/Dick.png" alt="Dick" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@TruthSeeker47</strong>
+                    <p>More corporate contraband, Scally? Wake up! You're just a pawn in their game!</p>
+                    <time>1d ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/Scally.png" alt="Scally" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@ScallyDeals</strong>
+                    <p>@TruthSeeker47 Dick, you overthink everything. Sometimes a cigar is just a cigar, you know? 😂
+                    </p>
+                    <time>1d ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="scally">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="social-post reveal">
+            <div class="social-post__header">
+              <img src="orionsbarrel/Toni.png" alt="Toni" class="social-post__avatar" />
+              <div class="social-post__info">
+                <h3 class="social-post__name">Toni</h3>
+                <p class="social-post__handle">@SmoothToni</p>
+                <time class="social-post__time">3d ago</time>
+              </div>
+            </div>
+            <div class="social-post__content">
+              <p>Amazing dinner at the new Andromedan restaurant on Deck 7 last night. The company was even better than
+                the nebula wine 😍 Life's too short for boring conversations and bad drinks. #LivingMyBestLife #Romance
+              </p>
+            </div>
+            <div class="social-post__actions">
+              <button class="social-action">💫 127</button>
+              <button class="social-action toggle-comments" data-post="toni-1">💬 34</button>
+              <button class="social-action">🔄 19</button>
+            </div>
+            <div class="comments-section" id="comments-toni-1">
+              <div class="existing-comments">
+                <div class="comment">
+                  <img src="orionsbarrel/mary.png" alt="Mary" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@BarrelOwner</strong>
+                    <p>Toni, you always know the best spots! Hope you had a wonderful evening! ✨</p>
+                    <time>2d ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/carl.png" alt="Carl" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@MinerCarl</strong>
+                    <p>Teach me your ways, Toni! I can't even get a dog to like me, let alone... well, anyone else! 😅
+                    </p>
+                    <time>2d ago</time>
+                  </div>
+                </div>
+                <div class="comment">
+                  <img src="orionsbarrel/Toni.png" alt="Toni" class="comment__avatar" />
+                  <div class="comment__content">
+                    <strong>@SmoothToni</strong>
+                    <p>@MinerCarl Carl, my friend, confidence is key! And when you get those dogs, they'll love you
+                      instantly. Trust me! 😉</p>
+                    <time>2d ago</time>
+                  </div>
+                </div>
+              </div>
+              <form class="comment-form" data-post-owner="toni">
+                <img src="https://via.placeholder.com/32/333/fff?text=?" alt="Guest" class="comment__avatar" />
+                <div class="comment-input-group">
+                  <input type="text" placeholder="Add a comment..." class="comment-input" required />
+                  <button type="submit" class="comment-submit">Post</button>
+                </div>
+              </form>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section" aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 id="gallery-title" class="section__title center">A glimpse outside</h2>
+      </div>
+      <div class="gallery reveal">
+        <img src="bar.png" alt="The exterior of Orion's Barrel in orbit" />
+      </div>
+    </section>
+
+    <!-- ARCADE -->
+    <section id="arcade" class="section section--tinted" aria-labelledby="arcade-title">
+      <div class="container">
+        <h2 id="arcade-title" class="section__title center">Arcade — Barrel Invaders</h2>
+        <p class="center" style="margin:0 0 18px; color: var(--muted)">
+          <span class="desktop-controls">Defend the Barrel from mischievous space gremlins. Use ← → to move, Space to
+            fire.</span>
+          <span class="mobile-controls">Defend the Barrel from mischievous space gremlins. Touch and drag to move, tap
+            to fire.</span>
+        </p>
+        <div class="arcade reveal">
+          <div class="arcade__hud">
+            <div><strong>Score:</strong> <span id="score">0</span></div>
+            <div><strong>Lives:</strong> <span id="lives">3</span></div>
+            <div id="status" aria-live="polite"></div>
+          </div>
+          <canvas id="arcade-canvas" width="480" height="640" aria-label="Barrel Invaders game area"></canvas>
+          <div class="arcade__controls">
+            <button id="startBtn" class="button button--primary" type="button">Start</button>
+            <button id="pauseBtn" class="button button--ghost" type="button">Pause</button>
+            <button id="resetBtn" class="button button--ghost" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT -->
+    <section id="visit" class="section section--tinted" aria-labelledby="visit-title">
+      <div class="container grid-2">
+        <div class="reveal">
+          <h2 id="visit-title" class="section__title">Dock with us</h2>
+          <p>
+            Find us at <strong>Warp Route 7</strong>, Orion Spur Express. Approach vector and
+            docking guidance transmitted on standard beacons. Atmosphere rated for all Class-M
+            species. Gravity normalized to 1.0g.
+          </p>
+          <p>
+            Questions about private hangars, events, or large crews? Send us a hail and we'll
+            configure a bay for you.
+          </p>
+          <div class="contact">
+            <a class="link" href="mailto:hail@orionsbarrel.com">hail@orionsbarrel.com</a>
+            <a class="link" href="https://orionsbarrel.com" target="_blank" rel="noopener">orionsbarrel.com</a>
+          </div>
+        </div>
+        <form id="mailinglist" class="card reveal" aria-labelledby="mailinglist-title" action="save_email.php"
+          method="POST">
+          <h3 id="mailinglist-title" class="card__title">Join our stellar mailing list</h3>
+          <p style="margin: 0 0 24px; color: var(--muted); font-size: 14px;">
+            Stay in the loop with cosmic events, new menu items, and special promotions at the Barrel.
+          </p>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <button class="button button--primary" type="submit">Join the Crew</button>
+          <p class="form-note">We'll send you stellar updates via subspace transmission.</p>
+          <div id="form-message" style="margin-top: 16px; padding: 12px; border-radius: 8px; display: none;"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__content">
+      <div class="footer__brand">
+        <img src="OB Logo.png" alt="Orion's Barrel logo small" />
+        <p>© <span id="year"></span> Orion's Barrel. All rights reserved across this sector.</p>
+      </div>
+      <div class="footer__links">
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#menu">Menu</a>
+        <a class="link" href="#locals">Locals</a>
+        <a class="link" href="#gallery">Gallery</a>
+        <a class="link" href="#visit">Visit</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

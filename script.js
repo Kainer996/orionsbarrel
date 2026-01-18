@@ -12,7 +12,7 @@ if (mobileMenuToggle && mobileNav) {
   mobileMenuToggle.addEventListener('click', () => {
     mobileMenuToggle.classList.toggle('active');
     mobileNav.classList.toggle('active');
-    
+
     // Update aria-expanded
     const isExpanded = mobileNav.classList.contains('active');
     mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
@@ -29,70 +29,254 @@ if (mobileMenuToggle && mobileNav) {
 }
 
 // Intersection Observer reveal
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
       observer.unobserve(entry.target);
     }
   });
-},{threshold:0.12});
+}, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Parallax on hero ship
 const heroShip = document.querySelector('.hero__ship img');
-if (heroShip){
-  window.addEventListener('scroll', ()=>{
+if (heroShip) {
+  window.addEventListener('scroll', () => {
     const y = window.scrollY * 0.15;
     heroShip.style.transform = `translateY(${y}px)`;
   });
 }
 
-// Starfield Canvas
-(function initStarfield(){
+// Parallax Background Effect - moves slower than scroll
+(function initBackgroundParallax() {
+  let ticking = false;
+
+  function updateBackgroundPosition() {
+    // Move at 30% of scroll speed - creates depth without running out of image
+    const scrolled = window.scrollY;
+    const parallaxSpeed = 0.3;
+    const yPos = scrolled * parallaxSpeed;
+
+    // Apply the parallax effect to the body background
+    document.body.style.backgroundPositionY = `calc(0% + ${yPos}px)`;
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(updateBackgroundPosition);
+      ticking = true;
+    }
+  });
+
+  // Initialize position
+  updateBackgroundPosition();
+})();
+
+// Starfield Canvas - Enhanced Beautiful Starry Sky
+(function initStarfield() {
   const canvas = document.getElementById('starfield');
-  if(!canvas) return;
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, stars;
+  let w, h;
+  let starsLayer1 = []; // Distant small stars
+  let starsLayer2 = []; // Medium stars
+  let starsLayer3 = []; // Bright close stars
+  let shootingStars = [];
+  let nebulaClouds = [];
+  let scrollY = 0;
 
-  function resize(){
+  // Track scroll for parallax
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY * 0.1;
+  });
+
+  function resize() {
     w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    stars = generateStars();
+    h = canvas.height = window.innerHeight * 3; // Extend for scrolling
+    generateStars();
+    generateNebulae();
   }
 
-  function generateStars(){
-    const count = Math.floor((w * h) / 3500); // density
-    const arr = new Array(count).fill(0).map(()=>({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      z: Math.random()*1 + 0.2,
-      r: Math.random()*1.2 + 0.2,
-      tw: Math.random()*2*Math.PI,
-      tws: 0.002 + Math.random()*0.008
+  function generateStars() {
+    const area = w * h;
+
+    // Layer 1: Distant dim stars (most numerous)
+    const count1 = Math.floor(area / 2000);
+    starsLayer1 = Array.from({ length: count1 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 0.8 + 0.3,
+      alpha: Math.random() * 0.4 + 0.2,
+      twinklePhase: Math.random() * Math.PI * 2,
+      twinkleSpeed: 0.001 + Math.random() * 0.003,
+      color: getStarColor(0.3)
     }));
-    return arr;
+
+    // Layer 2: Medium stars
+    const count2 = Math.floor(area / 8000);
+    starsLayer2 = Array.from({ length: count2 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2 + 0.8,
+      alpha: Math.random() * 0.5 + 0.4,
+      twinklePhase: Math.random() * Math.PI * 2,
+      twinkleSpeed: 0.002 + Math.random() * 0.006,
+      color: getStarColor(0.6)
+    }));
+
+    // Layer 3: Bright prominent stars
+    const count3 = Math.floor(area / 25000);
+    starsLayer3 = Array.from({ length: count3 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5 + 1.5,
+      alpha: Math.random() * 0.3 + 0.7,
+      twinklePhase: Math.random() * Math.PI * 2,
+      twinkleSpeed: 0.003 + Math.random() * 0.008,
+      color: getStarColor(1),
+      glow: true
+    }));
   }
 
-  function step(){
-    ctx.clearRect(0,0,w,h);
-    // slight gradient glow
-    const g = ctx.createRadialGradient(w*0.8, h*0.1, 0, w*0.8, h*0.1, Math.max(w,h)*0.9);
-    g.addColorStop(0,'rgba(71,176,255,0.06)');
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,w,h);
+  function getStarColor(brightness) {
+    const colors = [
+      { r: 255, g: 255, b: 255 },  // White
+      { r: 200, g: 220, b: 255 },  // Blue-white
+      { r: 255, g: 240, b: 220 },  // Warm white
+      { r: 180, g: 200, b: 255 },  // Blue
+      { r: 255, g: 220, b: 180 },  // Orange tint
+      { r: 220, g: 180, b: 255 },  // Purple tint
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
 
-    // stars
-    stars.forEach(s=>{
-      s.tw += s.tws;
-      const alpha = 0.6 + Math.sin(s.tw)*0.3;
+  function generateNebulae() {
+    // Create subtle nebula clouds
+    nebulaClouds = [
+      { x: w * 0.2, y: h * 0.15, rx: 400, ry: 250, color: 'rgba(71, 176, 255, 0.03)', rotation: 0 },
+      { x: w * 0.75, y: h * 0.3, rx: 350, ry: 200, color: 'rgba(147, 112, 219, 0.025)', rotation: 0.5 },
+      { x: w * 0.5, y: h * 0.55, rx: 500, ry: 300, color: 'rgba(54, 224, 168, 0.02)', rotation: -0.3 },
+      { x: w * 0.1, y: h * 0.7, rx: 300, ry: 180, color: 'rgba(255, 209, 102, 0.02)', rotation: 0.8 },
+      { x: w * 0.85, y: h * 0.8, rx: 450, ry: 280, color: 'rgba(255, 100, 150, 0.015)', rotation: -0.5 },
+    ];
+  }
+
+  function maybeSpawnShootingStar() {
+    if (Math.random() < 0.003 && shootingStars.length < 2) {
+      shootingStars.push({
+        x: Math.random() * w,
+        y: Math.random() * h * 0.5,
+        vx: 8 + Math.random() * 6,
+        vy: 4 + Math.random() * 3,
+        length: 80 + Math.random() * 60,
+        life: 1,
+        decay: 0.015 + Math.random() * 0.01
+      });
+    }
+  }
+
+  function drawNebulae() {
+    nebulaClouds.forEach(cloud => {
+      ctx.save();
+      ctx.translate(cloud.x, cloud.y - scrollY * 0.2);
+      ctx.rotate(cloud.rotation);
+
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.max(cloud.rx, cloud.ry));
+      gradient.addColorStop(0, cloud.color);
+      gradient.addColorStop(0.5, cloud.color.replace(/[\d.]+\)$/, '0.01)'));
+      gradient.addColorStop(1, 'transparent');
+
+      ctx.fillStyle = gradient;
+      ctx.scale(1, cloud.ry / cloud.rx);
       ctx.beginPath();
-      ctx.fillStyle = `rgba(214,236,255,${alpha})`;
-      ctx.arc(s.x, s.y, s.r * s.z, 0, Math.PI*2);
+      ctx.arc(0, 0, cloud.rx, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  function drawStarLayer(stars, parallaxFactor) {
+    stars.forEach(s => {
+      s.twinklePhase += s.twinkleSpeed;
+      const twinkle = 0.7 + Math.sin(s.twinklePhase) * 0.3;
+      const alpha = s.alpha * twinkle;
+      const yPos = (s.y - scrollY * parallaxFactor) % h;
+      const adjustedY = yPos < 0 ? yPos + h : yPos;
+
+      if (s.glow) {
+        // Draw glow for bright stars
+        const glowGradient = ctx.createRadialGradient(s.x, adjustedY, 0, s.x, adjustedY, s.r * 4);
+        glowGradient.addColorStop(0, `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${alpha * 0.3})`);
+        glowGradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath();
+        ctx.arc(s.x, adjustedY, s.r * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw star core
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${alpha})`;
+      ctx.arc(s.x, adjustedY, s.r, 0, Math.PI * 2);
       ctx.fill();
     });
+  }
+
+  function drawShootingStars() {
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const ss = shootingStars[i];
+      ss.x += ss.vx;
+      ss.y += ss.vy;
+      ss.life -= ss.decay;
+
+      if (ss.life <= 0 || ss.x > w + 100 || ss.y > h) {
+        shootingStars.splice(i, 1);
+        continue;
+      }
+
+      // Draw shooting star trail
+      const gradient = ctx.createLinearGradient(
+        ss.x, ss.y,
+        ss.x - ss.vx * (ss.length / 10), ss.y - ss.vy * (ss.length / 10)
+      );
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${ss.life})`);
+      gradient.addColorStop(0.3, `rgba(200, 220, 255, ${ss.life * 0.5})`);
+      gradient.addColorStop(1, 'transparent');
+
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(ss.x, ss.y);
+      ctx.lineTo(ss.x - ss.vx * (ss.length / 10), ss.y - ss.vy * (ss.length / 10));
+      ctx.stroke();
+
+      // Bright head
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${ss.life})`;
+      ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Draw nebula clouds first (background)
+    drawNebulae();
+
+    // Draw star layers with different parallax speeds
+    drawStarLayer(starsLayer1, 0.3);
+    drawStarLayer(starsLayer2, 0.5);
+    drawStarLayer(starsLayer3, 0.8);
+
+    // Maybe spawn and draw shooting stars
+    maybeSpawnShootingStar();
+    drawShootingStars();
+
     requestAnimationFrame(step);
   }
 
@@ -104,9 +288,9 @@ if (heroShip){
 // =====================
 // Barrel Invaders (Arcade)
 // =====================
-(function barrelInvaders(){
+(function barrelInvaders() {
   const canvas = document.getElementById('arcade-canvas');
-  if(!canvas) return;
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   const scoreEl = document.getElementById('score');
@@ -129,18 +313,18 @@ if (heroShip){
     height: canvas.height
   };
 
-  const keys = {left:false, right:false, space:false};
-  
+  const keys = { left: false, right: false, space: false };
+
   // Keyboard controls
-  window.addEventListener('keydown', (e)=>{
-    if(['ArrowLeft','a','A'].includes(e.key)) keys.left = true;
-    if(['ArrowRight','d','D'].includes(e.key)) keys.right = true;
-    if(e.code === 'Space') { keys.space = true; e.preventDefault(); }
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowLeft', 'a', 'A'].includes(e.key)) keys.left = true;
+    if (['ArrowRight', 'd', 'D'].includes(e.key)) keys.right = true;
+    if (e.code === 'Space') { keys.space = true; e.preventDefault(); }
   });
-  window.addEventListener('keyup', (e)=>{
-    if(['ArrowLeft','a','A'].includes(e.key)) keys.left = false;
-    if(['ArrowRight','d','D'].includes(e.key)) keys.right = false;
-    if(e.code === 'Space') keys.space = false;
+  window.addEventListener('keyup', (e) => {
+    if (['ArrowLeft', 'a', 'A'].includes(e.key)) keys.left = false;
+    if (['ArrowRight', 'd', 'D'].includes(e.key)) keys.right = false;
+    if (e.code === 'Space') keys.space = false;
   });
 
   // Touch controls for mobile
@@ -154,7 +338,7 @@ if (heroShip){
     touchStartX = touch.clientX;
     touchCurrentX = touch.clientX;
     isTouching = true;
-    
+
     // Shoot on touch start
     keys.space = true;
     setTimeout(() => keys.space = false, 100);
@@ -163,14 +347,14 @@ if (heroShip){
   canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
     if (!isTouching) return;
-    
+
     const touch = e.touches[0];
     touchCurrentX = touch.clientX;
-    
+
     // Calculate movement direction
     const deltaX = touchCurrentX - touchStartX;
     const sensitivity = 20;
-    
+
     if (deltaX > sensitivity) {
       keys.right = true;
       keys.left = false;
@@ -201,84 +385,84 @@ if (heroShip){
   });
 
   // Entities
-  const player = {x: world.width/2, y: world.height-40, w: 40, h: 14, speed: 260, cooldown: 0};
+  const player = { x: world.width / 2, y: world.height - 40, w: 40, h: 14, speed: 260, cooldown: 0 };
   const bullets = [];
   const invaders = [];
   const enemyBullets = [];
 
-  function spawnWave(){
+  function spawnWave() {
     invaders.length = 0;
     const rows = 4 + Math.min(3, level);
     const cols = 8;
-    for(let r=0;r<rows;r++){
-      for(let c=0;c<cols;c++){
-        invaders.push({x: 60 + c*46, y: 80 + r*36, w:28, h:18, vx: 40, alive:true});
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        invaders.push({ x: 60 + c * 46, y: 80 + r * 36, w: 28, h: 18, vx: 40, alive: true });
       }
     }
   }
 
-  function reset(){
-    score = 0; lives = 3; level = 1; player.x = world.width/2; bullets.length=0; enemyBullets.length=0; spawnWave();
+  function reset() {
+    score = 0; lives = 3; level = 1; player.x = world.width / 2; bullets.length = 0; enemyBullets.length = 0; spawnWave();
     updateHUD(); statusEl.textContent = 'Ready';
   }
 
-  function updateHUD(){
+  function updateHUD() {
     scoreEl.textContent = score;
     livesEl.textContent = lives;
   }
 
-  function shoot(){
-    if(player.cooldown<=0){
-      bullets.push({x: player.x, y: player.y-10, r:3, vy:-380});
+  function shoot() {
+    if (player.cooldown <= 0) {
+      bullets.push({ x: player.x, y: player.y - 10, r: 3, vy: -380 });
       player.cooldown = 240; // ms
     }
   }
 
-  function enemyShoot(from){
-    enemyBullets.push({x: from.x, y: from.y+6, r:3, vy: 200});
+  function enemyShoot(from) {
+    enemyBullets.push({ x: from.x, y: from.y + 6, r: 3, vy: 200 });
   }
 
   // Collision helpers
-  function rectsOverlap(a,b){
-    return !(a.x+a.w/2 < b.x-b.w/2 || a.x-a.w/2 > b.x+b.w/2 || a.y+a.h/2 < b.y-b.h/2 || a.y-a.h/2 > b.y+b.h/2);
+  function rectsOverlap(a, b) {
+    return !(a.x + a.w / 2 < b.x - b.w / 2 || a.x - a.w / 2 > b.x + b.w / 2 || a.y + a.h / 2 < b.y - b.h / 2 || a.y - a.h / 2 > b.y + b.h / 2);
   }
 
-  function update(dt){
+  function update(dt) {
     // Player
-    if(keys.left) player.x -= player.speed * dt;
-    if(keys.right) player.x += player.speed * dt;
-    player.x = Math.max(player.w/2, Math.min(world.width - player.w/2, player.x));
-    player.cooldown -= dt*1000;
-    if(keys.space) shoot();
+    if (keys.left) player.x -= player.speed * dt;
+    if (keys.right) player.x += player.speed * dt;
+    player.x = Math.max(player.w / 2, Math.min(world.width - player.w / 2, player.x));
+    player.cooldown -= dt * 1000;
+    if (keys.space) shoot();
 
     // Bullets
-    bullets.forEach(b=> b.y += b.vy * dt);
-    enemyBullets.forEach(b=> b.y += b.vy * dt);
+    bullets.forEach(b => b.y += b.vy * dt);
+    enemyBullets.forEach(b => b.y += b.vy * dt);
     // Cleanup
-    for(let i=bullets.length-1;i>=0;i--) if(bullets[i].y < -10) bullets.splice(i,1);
-    for(let i=enemyBullets.length-1;i>=0;i--) if(enemyBullets[i].y > world.height+10) enemyBullets.splice(i,1);
+    for (let i = bullets.length - 1; i >= 0; i--) if (bullets[i].y < -10) bullets.splice(i, 1);
+    for (let i = enemyBullets.length - 1; i >= 0; i--) if (enemyBullets[i].y > world.height + 10) enemyBullets.splice(i, 1);
 
     // Invaders movement
     let switchDir = false;
-    invaders.forEach(inv=>{
+    invaders.forEach(inv => {
       inv.x += inv.vx * dt;
-      if(inv.x > world.width-30 || inv.x < 30) switchDir = true;
+      if (inv.x > world.width - 30 || inv.x < 30) switchDir = true;
       // Random enemy fire
-      if(Math.random() < 0.002 * level) enemyShoot(inv);
+      if (Math.random() < 0.002 * level) enemyShoot(inv);
     });
-    if(switchDir){
-      invaders.forEach(inv=>{ inv.vx *= -1; inv.y += 16; });
+    if (switchDir) {
+      invaders.forEach(inv => { inv.vx *= -1; inv.y += 16; });
     }
 
     // Collisions: bullets vs invaders
-    for(let i=bullets.length-1;i>=0;i--){
+    for (let i = bullets.length - 1; i >= 0; i--) {
       const b = bullets[i];
-      for(let j=invaders.length-1;j>=0;j--){
+      for (let j = invaders.length - 1; j >= 0; j--) {
         const inv = invaders[j];
-        if(!inv.alive) continue;
-        if(Math.abs(b.x - inv.x) < inv.w/2 && Math.abs(b.y - inv.y) < inv.h/2){
-          bullets.splice(i,1);
-          invaders.splice(j,1);
+        if (!inv.alive) continue;
+        if (Math.abs(b.x - inv.x) < inv.w / 2 && Math.abs(b.y - inv.y) < inv.h / 2) {
+          bullets.splice(i, 1);
+          invaders.splice(j, 1);
           score += 10;
           updateHUD();
           break;
@@ -287,81 +471,81 @@ if (heroShip){
     }
 
     // Collisions: enemy bullets vs player
-    for(let i=enemyBullets.length-1;i>=0;i--){
+    for (let i = enemyBullets.length - 1; i >= 0; i--) {
       const b = enemyBullets[i];
-      if(Math.abs(b.x - player.x) < player.w/2 && Math.abs(b.y - player.y) < player.h/2){
-        enemyBullets.splice(i,1);
+      if (Math.abs(b.x - player.x) < player.w / 2 && Math.abs(b.y - player.y) < player.h / 2) {
+        enemyBullets.splice(i, 1);
         lives -= 1; updateHUD();
-        statusEl.textContent = lives>0 ? 'Hit!' : 'Game Over';
-        if(lives<=0){ pause(); running=false; }
+        statusEl.textContent = lives > 0 ? 'Hit!' : 'Game Over';
+        if (lives <= 0) { pause(); running = false; }
       }
     }
 
     // Next level
-    if(invaders.length === 0){
+    if (invaders.length === 0) {
       level += 1; spawnWave(); statusEl.textContent = `Level ${level}`;
     }
   }
 
-  function draw(){
+  function draw() {
     // Clear
-    ctx.clearRect(0,0,world.width, world.height);
+    ctx.clearRect(0, 0, world.width, world.height);
 
     // Background faint stars
     ctx.fillStyle = '#0b0f1f';
-    ctx.fillRect(0,0,world.width, world.height);
+    ctx.fillRect(0, 0, world.width, world.height);
     ctx.fillStyle = 'rgba(214,236,255,0.6)';
-    for(let i=0;i<60;i++){
-      const x = (i*73)%world.width; const y = (i*137)%world.height; const r = (i%3)*0.6+0.2;
-      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    for (let i = 0; i < 60; i++) {
+      const x = (i * 73) % world.width; const y = (i * 137) % world.height; const r = (i % 3) * 0.6 + 0.2;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
     }
 
     // Player ship (OB green)
     ctx.fillStyle = '#3dd6a2';
-    roundRect(ctx, player.x-player.w/2, player.y-player.h/2, player.w, player.h, 6, true);
+    roundRect(ctx, player.x - player.w / 2, player.y - player.h / 2, player.w, player.h, 6, true);
     // Cannon
-    ctx.fillStyle = '#ffd166'; ctx.fillRect(player.x-3, player.y-14, 6, 8);
+    ctx.fillStyle = '#ffd166'; ctx.fillRect(player.x - 3, player.y - 14, 6, 8);
 
     // Invaders
     ctx.fillStyle = '#47b0ff';
-    invaders.forEach(inv=>{ roundRect(ctx, inv.x-inv.w/2, inv.y-inv.h/2, inv.w, inv.h, 4, true); });
+    invaders.forEach(inv => { roundRect(ctx, inv.x - inv.w / 2, inv.y - inv.h / 2, inv.w, inv.h, 4, true); });
 
     // Bullets
     ctx.fillStyle = '#ffd166';
-    bullets.forEach(b=>{ ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill(); });
+    bullets.forEach(b => { ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ctx.fill(); });
     ctx.fillStyle = '#ff6b6b';
-    enemyBullets.forEach(b=>{ ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill(); });
+    enemyBullets.forEach(b => { ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ctx.fill(); });
   }
 
-  function roundRect(ctx, x, y, w, h, r, fill){
+  function roundRect(ctx, x, y, w, h, r, fill) {
     ctx.beginPath();
-    ctx.moveTo(x+r, y);
-    ctx.arcTo(x+w, y, x+w, y+h, r);
-    ctx.arcTo(x+w, y+h, x, y+h, r);
-    ctx.arcTo(x, y+h, x, y, r);
-    ctx.arcTo(x, y, x+w, y, r);
-    if(fill) ctx.fill(); else ctx.stroke();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    if (fill) ctx.fill(); else ctx.stroke();
   }
 
-  function loop(ts){
-    if(!running || paused) return; 
-    const dt = Math.min(0.033, (ts - last)/1000);
+  function loop(ts) {
+    if (!running || paused) return;
+    const dt = Math.min(0.033, (ts - last) / 1000);
     last = ts;
     update(dt);
     draw();
     requestAnimationFrame(loop);
   }
 
-  function start(){
-    if(!running){ running = true; paused = false; statusEl.textContent=''; last = performance.now(); requestAnimationFrame(loop); }
+  function start() {
+    if (!running) { running = true; paused = false; statusEl.textContent = ''; last = performance.now(); requestAnimationFrame(loop); }
   }
-  function pause(){ paused = true; statusEl.textContent = 'Paused'; }
-  function resume(){ if(running && paused){ paused=false; last = performance.now(); requestAnimationFrame(loop);} }
+  function pause() { paused = true; statusEl.textContent = 'Paused'; }
+  function resume() { if (running && paused) { paused = false; last = performance.now(); requestAnimationFrame(loop); } }
 
   // Buttons
-  startBtn.addEventListener('click', ()=>{ if(!running){ reset(); start(); } else resume(); });
-  pauseBtn.addEventListener('click', ()=> paused? resume() : pause());
-  resetBtn.addEventListener('click', ()=>{ running=false; paused=false; reset(); draw(); });
+  startBtn.addEventListener('click', () => { if (!running) { reset(); start(); } else resume(); });
+  pauseBtn.addEventListener('click', () => paused ? resume() : pause());
+  resetBtn.addEventListener('click', () => { running = false; paused = false; reset(); draw(); });
 
   // Initialize
   reset();
@@ -371,22 +555,22 @@ if (heroShip){
 // =====================
 // Mailing List Form Handler
 // =====================
-(function mailingListHandler(){
+(function mailingListHandler() {
   const form = document.getElementById('mailinglist');
   const messageDiv = document.getElementById('form-message');
-  
+
   if (!form || !messageDiv) return;
-  
+
   function showMessage(message, isSuccess) {
     messageDiv.textContent = message;
     messageDiv.style.display = 'block';
     messageDiv.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
     messageDiv.style.color = isSuccess ? '#155724' : '#721c24';
     messageDiv.style.border = isSuccess ? '1px solid #c3e6cb' : '1px solid #f5c6cb';
-    
+
     // Scroll message into view
     messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    
+
     // Hide message after 5 seconds if successful
     if (isSuccess) {
       setTimeout(() => {
@@ -394,34 +578,34 @@ if (heroShip){
       }, 5000);
     }
   }
-  
-  form.addEventListener('submit', async function(e) {
+
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
-    
+
     // Show loading state
     submitButton.textContent = 'Joining...';
     submitButton.disabled = true;
-    
+
     try {
       const formData = new FormData(form);
-      
+
       const response = await fetch('save_email.php', {
         method: 'POST',
         body: formData
       });
-      
+
       const result = await response.json();
-      
+
       if (result.success) {
         showMessage(result.message, true);
         form.reset(); // Clear the form
       } else {
         showMessage(result.message, false);
       }
-      
+
     } catch (error) {
       console.error('Error submitting form:', error);
       showMessage('Sorry, there was an error submitting your information. Please try again later.', false);
@@ -434,7 +618,7 @@ if (heroShip){
 })();
 
 // Spacebook Comments System
-(function() {
+(function () {
   // Character personality-based auto-replies
   const characterReplies = {
     mary: [
@@ -476,13 +660,13 @@ if (heroShip){
   };
 
   // Handle like button clicks
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     if (e.target.classList.contains('social-action') && e.target.textContent.includes('💫')) {
       const currentText = e.target.textContent;
       const currentCount = parseInt(currentText.match(/\d+/)[0]);
       const newCount = currentCount + 1;
       e.target.textContent = `💫 ${newCount}`;
-      
+
       // Add visual feedback
       e.target.style.transform = 'scale(1.2)';
       e.target.style.color = 'var(--brand)';
@@ -490,24 +674,24 @@ if (heroShip){
         e.target.style.transform = '';
         e.target.style.color = '';
       }, 200);
-      
+
       console.log('Like button clicked! New count:', newCount); // Debug
       return; // Prevent other click handlers
     }
   });
 
   // Toggle comments visibility
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     if (e.target.classList.contains('toggle-comments')) {
       console.log('Comment button clicked!'); // Debug
       const postId = e.target.getAttribute('data-post');
       console.log('Post ID:', postId); // Debug
       const commentsSection = document.getElementById('comments-' + postId);
       console.log('Comments section found:', commentsSection); // Debug
-      
+
       if (commentsSection) {
         commentsSection.classList.toggle('active');
-        
+
         // Update button text
         const isActive = commentsSection.classList.contains('active');
         const currentText = e.target.textContent;
@@ -521,39 +705,39 @@ if (heroShip){
   });
 
   // Handle comment form submissions
-  document.addEventListener('submit', function(e) {
+  document.addEventListener('submit', function (e) {
     if (e.target.classList.contains('comment-form')) {
       e.preventDefault();
       console.log('Comment form submitted!'); // Debug
-      
+
       const form = e.target;
       const input = form.querySelector('.comment-input');
       const submitBtn = form.querySelector('.comment-submit');
       const postOwner = form.getAttribute('data-post-owner');
       const commentsContainer = form.parentElement.querySelector('.existing-comments');
-      
-      console.log('Form elements found:', {form, input, submitBtn, postOwner, commentsContainer}); // Debug
-      
+
+      console.log('Form elements found:', { form, input, submitBtn, postOwner, commentsContainer }); // Debug
+
       if (!input.value.trim()) {
         console.log('Empty input value, returning'); // Debug
         return;
       }
-      
+
       // Disable form temporarily
       submitBtn.disabled = true;
       const originalText = submitBtn.textContent;
       submitBtn.textContent = 'Posting...';
-      
+
       // Store the comment text before clearing
       const userCommentText = input.value.trim();
-      
+
       // Create user comment
       const userComment = createComment('Guest', userCommentText, 'Just now', 'https://via.placeholder.com/32/333/fff?text=?');
       commentsContainer.appendChild(userComment);
-      
+
       // Clear input
       input.value = '';
-      
+
       // Generate auto-reply from character
       setTimeout(() => {
         const characterName = postOwner.charAt(0).toUpperCase() + postOwner.slice(1);
@@ -563,11 +747,11 @@ if (heroShip){
         console.log('User comment:', userCommentText); // Debug
         console.log('Character:', postOwner); // Debug
         console.log('Generated reply:', replyText); // Debug
-        
+
         const characterReply = createComment(characterHandle, replyText, 'Just now', characterImage);
         characterReply.classList.add('new-comment');
         commentsContainer.appendChild(characterReply);
-        
+
         // Update comment count
         const toggleBtn = form.parentElement.parentElement.querySelector('.toggle-comments');
         if (toggleBtn) {
@@ -577,12 +761,12 @@ if (heroShip){
           const isHidden = !currentText.includes('Hide');
           toggleBtn.textContent = isHidden ? `💬 ${newCount}` : `💬 ${newCount} (Hide)`;
         }
-        
+
         // Re-enable form
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       }, 1500 + Math.random() * 2000); // Random delay between 1.5-3.5 seconds
-      
+
       // Re-enable form
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
@@ -618,7 +802,7 @@ if (heroShip){
   function getContextualReply(character, userComment) {
     const comment = userComment.toLowerCase();
     console.log('Processing contextual reply for:', character, 'comment:', comment); // Debug
-    
+
     // Create contextual reply categories for each character
     const contextualReplies = {
       mary: {
@@ -712,7 +896,7 @@ if (heroShip){
   }
 
   // Fix spacebar issue in comment inputs
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.target.classList.contains('comment-input') && e.code === 'Space') {
       e.stopPropagation(); // Prevent any parent handlers from interfering
       console.log('Spacebar pressed in comment input'); // Debug
@@ -720,7 +904,7 @@ if (heroShip){
   });
 
   // Debug: Log all keyboard events on comment inputs
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.target.classList.contains('comment-input')) {
       console.log('Key pressed in comment input:', e.key, e.code, e.target.value); // Debug
     }
