@@ -1,0 +1,7 @@
+# GitHub Pages builds this repo into www.orionsbarrel.com.
+# Working notes stay off the public site (Lock it down, rule 3).
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - DATABASE_README.md
+  - MAILING_LIST_README.md
